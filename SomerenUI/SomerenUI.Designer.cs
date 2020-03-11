@@ -291,6 +291,7 @@
             this.listViewTeachers.TabIndex = 5;
             this.listViewTeachers.UseCompatibleStateImageBehavior = false;
             this.listViewTeachers.View = System.Windows.Forms.View.Details;
+            this.listViewTeachers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewTeachers_ColumnClick);
             this.listViewTeachers.SelectedIndexChanged += new System.EventHandler(this.listViewTeachers_SelectedIndexChanged);
             // 
             // TeacherID
@@ -299,17 +300,17 @@
             // 
             // TeacherFirstName
             // 
-            this.TeacherFirstName.Text = "FirstName";
+            this.TeacherFirstName.Text = "First Name";
             this.TeacherFirstName.Width = 117;
             // 
             // TeacherLastName
             // 
-            this.TeacherLastName.Text = "LastName";
+            this.TeacherLastName.Text = "Last Name";
             this.TeacherLastName.Width = 105;
             // 
             // TeacherRoomNumber
             // 
-            this.TeacherRoomNumber.Text = "RoomNumber";
+            this.TeacherRoomNumber.Text = "Room Number";
             this.TeacherRoomNumber.Width = 132;
             // 
             // SomerenUI

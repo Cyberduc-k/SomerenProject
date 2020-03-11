@@ -87,12 +87,12 @@ namespace SomerenUI
                
                 foreach (SomerenModel.Teacher t in teacherList)
                 {
-                    ListViewItem ID = new ListViewItem(t.Id.ToString());
-                   
-                    ID.SubItems.Add(t.FirstName);
-                    ID.SubItems.Add(t.LastName);
-                    ID.SubItems.Add(t.RoomNumber.ToString());
-                    listViewTeachers.Items.Add(ID);
+                    ListViewItem List = new ListViewItem(t.Id.ToString());
+                    List.SubItems.Add(t.FirstName);
+                    List.SubItems.Add(t.LastName);
+                    List.SubItems.Add(t.RoomNumber.ToString());
+                    listViewTeachers.Items.Add(List);
+
                 }
 
 
@@ -167,6 +167,11 @@ namespace SomerenUI
         private void listViewTeachers_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void listViewTeachers_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            
         }
     }
 }
