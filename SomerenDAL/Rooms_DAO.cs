@@ -8,32 +8,31 @@ namespace SomerenDAL
 {
     public class Rooms_DAO : Base
     {
-        public List<Student> Db_Get_All_Students()
+        public List<Room> Db_Get_All_Rooms()
         {
-            string query = "SELECT StudentID, Voornaam, Achternaam, GeboorteDatum FROM [Studenten]";
+            string query = "SELECT KamerID, AantalPersonen FROM [Kamer]";
             SqlParameter[] sqlParameters = new SqlParameter[0];
 
-            return ReadStudent(ExecuteSelectQuery(query, sqlParameters));
+            return ReadRoom(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        private List<Student> ReadStudent(DataTable dataTable)
+        private List<Room> ReadRoom(DataTable dataTable)
         {
-            List<Student> students = new List<Student>();
+            List<Room> rooms = new List<Room>();
 
             foreach (DataRow dr in dataTable.Rows)
             {
-                Student student = new Student()
+                Room room = new Room()
                 {
-                    Id = (int)dr["StudentID"],
-                    FirstName = (string)dr["Voornaam"],
-                    LastName = (string)dr["Achternaam"],
-                    BirthDate = (DateTime)dr["GeboorteDatum"]
+                    Number = (int)dr["KamerID"],
+                    Capacity = (int)dr["AantalPersonen"],
+
 
                 };
 
-                students.Add(student);
+                rooms.Add(room);
             }
-            return students;
+            return rooms;
         }
 
     }

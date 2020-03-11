@@ -92,6 +92,37 @@ namespace SomerenUI
                 }
 
             }
+            else if (panelName == "Rooms")
+            {
+                // hide all other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Students.Hide();
+                pnl_Teachers.Hide();
+
+
+                // show rooms
+                pnl_Rooms.Show();
+
+                // clear the listview before filling it again
+                listViewTeachers.Clear();
+
+                // fill the rooms listview within the rooms panel with a list of rooms
+                SomerenLogic.Room_Service room_Service = new SomerenLogic.Room_Service();
+                List<Room> roomList = room_Service.GetRoom();
+
+                foreach (SomerenModel.Room t in roomList)
+                {
+                    ListViewItem ID = new ListViewItem(t.Number.ToString());
+
+                    ID.SubItems.Add(t.Number.ToString());
+                    ID.SubItems.Add(t.Capacity.ToString());
+
+
+                    r.Items.Add(li);
+                }
+
+            }
         }
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -155,6 +186,16 @@ namespace SomerenUI
         }
 
         private void pnl_Students_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ListView_Rooms_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
