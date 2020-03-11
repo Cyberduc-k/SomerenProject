@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
@@ -8,9 +8,9 @@ namespace SomerenDAL
 {
     public class Student_DAO : Base
     {
-        public List<Student> GetAll()
+        public List<Student> Db_Get_All_Students()
         {
-            string query = "SELECT StudentID, Voornaam, Achternaam FROM [Studenten]";
+            string query = "SELECT StudentID, Voornaam, Achternaam, GeboorteDatum FROM [Studenten]";
             SqlParameter[] sqlParameters = new SqlParameter[0];
 
             return ReadStudent(ExecuteSelectQuery(query, sqlParameters));
@@ -26,7 +26,9 @@ namespace SomerenDAL
                 {
                     Id = (int)dr["StudentID"],
                     FirstName = (string)dr["Voornaam"],
-                    LastName = (string)dr["Achternaam"]
+                    LastName = (string)dr["Achternaam"],
+                    BirthDate = (DateTime)dr["GeboorteDatum"]
+
                 };
 
                 students.Add(student);

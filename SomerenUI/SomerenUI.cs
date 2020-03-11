@@ -33,6 +33,7 @@ namespace SomerenUI
 
                 // hide all other panels
                 pnl_Students.Hide();
+                pnl_Teachers.Hide();
 
                 // show dashboard
                 pnl_Dashboard.Show();
@@ -43,9 +44,12 @@ namespace SomerenUI
                 // hide all other panels
                 pnl_Dashboard.Hide();
                 img_Dashboard.Hide();
+                pnl_Teachers.Hide();
+                
 
                 // show students
                 pnl_Students.Show();
+
 
                 
 
@@ -62,6 +66,31 @@ namespace SomerenUI
                     ListViewItem li = new ListViewItem(s.Name);
                     listViewStudents.Items.Add(li);
                 }
+            }
+            else if (panelName == "Teachers")
+            {
+                // hide all other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Students.Hide();
+                
+                
+                // show teachers
+                pnl_Teachers.Show();
+
+                // clear the listview before filling it again
+                listViewTeachers.Clear();
+
+                // fill the teachers listview within the teachers panel with a list of teachers
+                SomerenLogic.Teacher_Service teacher_Service = new SomerenLogic.Teacher_Service();
+                List<Teacher> teacherList = teacher_Service.GetTeacher();
+               
+                foreach (SomerenModel.Teacher t in teacherList)
+                {
+                    ListViewItem li = new ListViewItem(t.Name);
+                    listViewTeachers.Items.Add(li);
+                }
+
             }
         }
 
@@ -93,6 +122,41 @@ namespace SomerenUI
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Students");
+        }
+
+        private void lecturersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void teacherToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Teachers");
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnl_Teacher_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lbl_Teachers_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_Students_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnl_Students_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

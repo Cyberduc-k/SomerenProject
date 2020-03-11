@@ -9,18 +9,14 @@ using System.Threading.Tasks;
 
 namespace SomerenLogic
 {
-    public class Student_Service
+    public class Teacher_Service
     {
-        Student_DAO student_db = new Student_DAO();
+            Teacher_DAO teacher_db = new Teacher_DAO();
 
-        public List<Student> GetStudents()
-        {
-
-
-            return student_db.Db_Get_All_Students(); 
-            
-
-        }
+            public List<Teacher> GetTeacher()
+            {
+                return teacher_db.Db_Get_All_Teachers();
+            }
+        
     }
-    
 }
