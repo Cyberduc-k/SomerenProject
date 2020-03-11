@@ -58,12 +58,15 @@ namespace SomerenUI
                 List<Student> studentList = studService.GetStudents();
 
                 // clear the listview before filling it again
-                listViewStudents.Clear();
+                listViewStudents.Items.Clear();
 
                 foreach (SomerenModel.Student s in studentList)
                 {
+                    ListViewItem li = new ListViewItem(s.Id.ToString());
 
-                    ListViewItem li = new ListViewItem(s.Name);
+                    li.SubItems.Add(s.Name);
+                    li.SubItems.Add(s.BirthDate.ToString("dd-mm-yyyy"));
+
                     listViewStudents.Items.Add(li);
                 }
             }
