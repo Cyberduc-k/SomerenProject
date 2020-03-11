@@ -12,6 +12,7 @@ namespace SomerenDAL
         public List<Teacher> Db_Get_All_Teachers()
         {
             string query = "SELECT DocentID, Voornaam, Achternaam, KamerID FROM [Docenten]";
+
             SqlParameter[] sqlParameters = new SqlParameter[0];
 
             return ReadTeacher(ExecuteSelectQuery(query, sqlParameters));

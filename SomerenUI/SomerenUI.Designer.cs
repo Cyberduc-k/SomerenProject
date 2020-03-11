@@ -54,7 +54,6 @@
             this.lbl_Teachers = new System.Windows.Forms.Label();
             this.listViewTeachers = new System.Windows.Forms.ListView();
             this.TeacherID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TeacherName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeacherFirstName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeacherLastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeacherRoomNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -70,7 +69,7 @@
             // img_Dashboard
             // 
             this.img_Dashboard.Location = new System.Drawing.Point(836, 0);
-            this.img_Dashboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.img_Dashboard.Margin = new System.Windows.Forms.Padding(4);
             this.img_Dashboard.Name = "img_Dashboard";
             this.img_Dashboard.Size = new System.Drawing.Size(415, 332);
             this.img_Dashboard.TabIndex = 0;
@@ -163,7 +162,7 @@
             this.pnl_Dashboard.Controls.Add(this.lbl_Dashboard);
             this.pnl_Dashboard.Controls.Add(this.img_Dashboard);
             this.pnl_Dashboard.Location = new System.Drawing.Point(27, 50);
-            this.pnl_Dashboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnl_Dashboard.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_Dashboard.Name = "pnl_Dashboard";
             this.pnl_Dashboard.Size = new System.Drawing.Size(1251, 574);
             this.pnl_Dashboard.TabIndex = 2;
@@ -186,7 +185,7 @@
             this.pnl_Students.Controls.Add(this.pictureBox1);
             this.pnl_Students.Controls.Add(this.lbl_Students);
             this.pnl_Students.Location = new System.Drawing.Point(27, 50);
-            this.pnl_Students.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnl_Students.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_Students.Name = "pnl_Students";
             this.pnl_Students.Size = new System.Drawing.Size(1253, 574);
             this.pnl_Students.TabIndex = 4;
@@ -200,7 +199,7 @@
             this.studentDOB});
             this.listViewStudents.HideSelection = false;
             this.listViewStudents.Location = new System.Drawing.Point(21, 52);
-            this.listViewStudents.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewStudents.Margin = new System.Windows.Forms.Padding(4);
             this.listViewStudents.Name = "listViewStudents";
             this.listViewStudents.Size = new System.Drawing.Size(1020, 377);
             this.listViewStudents.TabIndex = 5;
@@ -223,7 +222,7 @@
             this.pictureBox1.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
             this.pictureBox1.Location = new System.Drawing.Point(1073, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(173, 151);
             this.pictureBox1.TabIndex = 0;
@@ -248,7 +247,7 @@
             this.pnl_Teachers.Controls.Add(this.lbl_Teachers);
             this.pnl_Teachers.Controls.Add(this.listViewTeachers);
             this.pnl_Teachers.Location = new System.Drawing.Point(27, 50);
-            this.pnl_Teachers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnl_Teachers.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_Teachers.Name = "pnl_Teachers";
             this.pnl_Teachers.Size = new System.Drawing.Size(1253, 576);
             this.pnl_Teachers.TabIndex = 6;
@@ -259,7 +258,7 @@
             this.pictureBox2.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
             this.pictureBox2.Location = new System.Drawing.Point(1073, 0);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(173, 151);
             this.pictureBox2.TabIndex = 0;
@@ -281,39 +280,37 @@
             // 
             this.listViewTeachers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.TeacherID,
-            this.TeacherName,
             this.TeacherFirstName,
             this.TeacherLastName,
             this.TeacherRoomNumber});
             this.listViewTeachers.HideSelection = false;
             this.listViewTeachers.Location = new System.Drawing.Point(21, 52);
-            this.listViewTeachers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listViewTeachers.Margin = new System.Windows.Forms.Padding(4);
             this.listViewTeachers.Name = "listViewTeachers";
             this.listViewTeachers.Size = new System.Drawing.Size(1020, 377);
             this.listViewTeachers.TabIndex = 5;
             this.listViewTeachers.UseCompatibleStateImageBehavior = false;
+            this.listViewTeachers.View = System.Windows.Forms.View.Details;
             this.listViewTeachers.SelectedIndexChanged += new System.EventHandler(this.listViewTeachers_SelectedIndexChanged);
             // 
             // TeacherID
             // 
             this.TeacherID.Text = "ID";
             // 
-            // TeacherName
-            // 
-            this.TeacherName.Text = "Name";
-            this.TeacherName.Width = 120;
-            // 
             // TeacherFirstName
             // 
             this.TeacherFirstName.Text = "FirstName";
+            this.TeacherFirstName.Width = 117;
             // 
             // TeacherLastName
             // 
             this.TeacherLastName.Text = "LastName";
+            this.TeacherLastName.Width = 105;
             // 
             // TeacherRoomNumber
             // 
             this.TeacherRoomNumber.Text = "RoomNumber";
+            this.TeacherRoomNumber.Width = 132;
             // 
             // SomerenUI
             // 
@@ -326,7 +323,7 @@
             this.Controls.Add(this.pnl_Students);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SomerenUI";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "SomerenApp";
@@ -372,7 +369,6 @@
         private System.Windows.Forms.Panel pnl_Teachers;
         private System.Windows.Forms.ListView listViewTeachers;
         private System.Windows.Forms.ColumnHeader TeacherID;
-        private System.Windows.Forms.ColumnHeader TeacherName;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Label lbl_Teachers;
         private System.Windows.Forms.ColumnHeader TeacherFirstName;
