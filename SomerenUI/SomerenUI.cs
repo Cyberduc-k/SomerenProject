@@ -44,9 +44,6 @@ namespace SomerenUI
                 // show students
                 pnl_Students.Show();
 
-
-                
-
                 // fill the students listview within the students panel with a list of students
                 SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
                 List<Student> studentList = studService.GetStudents();
@@ -74,12 +71,12 @@ namespace SomerenUI
                 img_Dashboard.Hide();
                 pnl_Students.Hide();
                 pnl_Rooms.Hide();
-
+                
                 // show teachers
                 pnl_Teachers.Show();
 
                 // clear the listview before filling it again
-                listViewTeachers.Clear();
+                listViewTeachers.Items.Clear();
 
                 // fill the teachers listview within the teachers panel with a list of teachers
                 SomerenLogic.Teacher_Service teacher_Service = new SomerenLogic.Teacher_Service();
@@ -87,11 +84,12 @@ namespace SomerenUI
                
                 foreach (Teacher t in teacherList)
                 {
-                    ListViewItem li = new ListViewItem(t.Name);
-                    listViewTeachers.Items.Add(li);
-                }
-                
-
+                    ListViewItem List = new ListViewItem(t.Id.ToString());
+                    List.SubItems.Add(t.FirstName);
+                    List.SubItems.Add(t.LastName);
+                    List.SubItems.Add(t.RoomNumber.ToString());
+                    listViewTeachers.Items.Add(List);
+                }         
             }
             else if (panelName == "Rooms")
             {
@@ -124,7 +122,6 @@ namespace SomerenUI
 
                     ListViewRooms.Items.Add(ID);
                 }
-
             }
         }
 
@@ -198,6 +195,11 @@ namespace SomerenUI
 
         }
 
+        private void listViewTeachers_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+          
+        }
+
         private void listViewStudents_ColumnClicked(object sender, ColumnClickEventArgs e)
         {
             StudentsListComparer sorter = (StudentsListComparer)listViewStudents.ListViewItemSorter;
@@ -210,7 +212,7 @@ namespace SomerenUI
             sorter.Column = e.Column;
             listViewStudents.Sort();
         }
-
+        
         private void listViewStudents_SelectedIndexChanged(object sender, EventArgs e)
         {
 
