@@ -1,4 +1,4 @@
-﻿namespace SomerenUI
+namespace SomerenUI
 {
     partial class SomerenUI
     {
@@ -195,27 +195,39 @@
             // 
             this.listViewStudents.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.studentID,
-            this.studentName,
+            this.studentFirstName,
+            this.studentLastName,
             this.studentDOB});
             this.listViewStudents.HideSelection = false;
-            this.listViewStudents.Location = new System.Drawing.Point(21, 52);
-            this.listViewStudents.Margin = new System.Windows.Forms.Padding(4);
+            this.listViewStudents.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.listViewStudents.Location = new System.Drawing.Point(16, 42);
             this.listViewStudents.Name = "listViewStudents";
-            this.listViewStudents.Size = new System.Drawing.Size(1020, 377);
+            this.listViewStudents.Size = new System.Drawing.Size(766, 307);
+            this.listViewStudents.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listViewStudents.TabIndex = 5;
             this.listViewStudents.UseCompatibleStateImageBehavior = false;
+            this.listViewStudents.View = System.Windows.Forms.View.Details;
+            this.listViewStudents.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewStudents_ColumnClicked);
             // 
             // studentID
             // 
             this.studentID.Text = "ID";
+            this.studentID.Width = 60;
             // 
-            // studentName
+            // studentFirstName
             // 
-            this.studentName.Text = "Name";
+            this.studentFirstName.Text = "Voornaam";
+            this.studentFirstName.Width = 200;
+            // 
+            // studentLastName
+            // 
+            this.studentLastName.Text = "Achternaam";
+            this.studentLastName.Width = 200;
             // 
             // studentDOB
             // 
-            this.studentDOB.Text = "Date of Birth";
+            this.studentDOB.Text = "Geboorte Datum";
+            this.studentDOB.Width = 300;
             // 
             // pictureBox1
             // 
@@ -342,7 +354,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -364,7 +375,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListView listViewStudents;
         private System.Windows.Forms.ColumnHeader studentID;
-        private System.Windows.Forms.ColumnHeader studentName;
+        private System.Windows.Forms.ColumnHeader studentFirstName;
         private System.Windows.Forms.ColumnHeader studentDOB;
         private System.Windows.Forms.ToolStripMenuItem teacherToolStripMenuItem;
         private System.Windows.Forms.Panel pnl_Teachers;
@@ -375,6 +386,7 @@
         private System.Windows.Forms.ColumnHeader TeacherFirstName;
         private System.Windows.Forms.ColumnHeader TeacherLastName;
         private System.Windows.Forms.ColumnHeader TeacherRoomNumber;
+        private System.Windows.Forms.ColumnHeader studentLastName;
     }
 }
 
