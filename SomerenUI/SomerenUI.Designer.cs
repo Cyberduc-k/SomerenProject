@@ -184,10 +184,9 @@
             // pnl_Dashboard
             // 
             this.pnl_Dashboard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnl_Dashboard.Controls.Add(this.pnl_Rooms);
             this.pnl_Dashboard.Controls.Add(this.lbl_Dashboard);
             this.pnl_Dashboard.Controls.Add(this.img_Dashboard);
-            this.pnl_Dashboard.Location = new System.Drawing.Point(20, 41);
+            this.pnl_Dashboard.Location = new System.Drawing.Point(66, 62);
             this.pnl_Dashboard.Name = "pnl_Dashboard";
             this.pnl_Dashboard.Size = new System.Drawing.Size(939, 467);
             this.pnl_Dashboard.TabIndex = 2;
@@ -208,6 +207,7 @@
             this.pnl_Students.Controls.Add(this.listViewStudents);
             this.pnl_Students.Controls.Add(this.pictureBox1);
             this.pnl_Students.Controls.Add(this.lbl_Students);
+            this.pnl_Students.Controls.Add(this.pnl_Dashboard);
             this.pnl_Students.Location = new System.Drawing.Point(20, 41);
             this.pnl_Students.Name = "pnl_Students";
             this.pnl_Students.Size = new System.Drawing.Size(940, 467);
@@ -336,7 +336,7 @@
             this.pnl_Rooms.Controls.Add(this.pictureBox3);
             this.pnl_Rooms.Controls.Add(this.lbl_Rooms);
             this.pnl_Rooms.Controls.Add(this.ListViewRooms);
-            this.pnl_Rooms.Location = new System.Drawing.Point(3, 3);
+            this.pnl_Rooms.Location = new System.Drawing.Point(20, 42);
             this.pnl_Rooms.Name = "pnl_Rooms";
             this.pnl_Rooms.Size = new System.Drawing.Size(940, 468);
             this.pnl_Rooms.TabIndex = 9;
@@ -483,9 +483,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 529);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.pnl_Dashboard);
             this.Controls.Add(this.pnl_Students);
             this.Controls.Add(this.pnl_Teachers);
+            this.Controls.Add(this.pnl_Rooms);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "SomerenUI";
