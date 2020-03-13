@@ -63,8 +63,6 @@ namespace SomerenUI
             this.lbl_Rooms = new System.Windows.Forms.Label();
             this.ListViewRooms = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -158,6 +156,7 @@ namespace SomerenUI
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
             this.roomsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.roomsToolStripMenuItem.Text = "Rooms";
+            this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
             // teacherToolStripMenuItem
             // 
@@ -184,7 +183,6 @@ namespace SomerenUI
             this.lbl_Dashboard.Size = new System.Drawing.Size(185, 13);
             this.lbl_Dashboard.TabIndex = 1;
             this.lbl_Dashboard.Text = "Welcome to the Someren Application!";
-            this.lbl_Dashboard.Click += new System.EventHandler(this.label1_Click);
             // 
             // pnl_Students
             // 
@@ -196,7 +194,6 @@ namespace SomerenUI
             this.pnl_Students.Name = "pnl_Students";
             this.pnl_Students.Size = new System.Drawing.Size(940, 467);
             this.pnl_Students.TabIndex = 4;
-            this.pnl_Students.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Students_Paint);
             // 
             // listViewStudents
             // 
@@ -208,7 +205,7 @@ namespace SomerenUI
             this.listViewStudents.HideSelection = false;
             this.listViewStudents.ImeMode = System.Windows.Forms.ImeMode.On;
             this.listViewStudents.Location = new System.Drawing.Point(16, 42);
-            this.listViewStudents.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listViewStudents.Margin = new System.Windows.Forms.Padding(2);
             this.listViewStudents.Name = "listViewStudents";
             this.listViewStudents.Size = new System.Drawing.Size(766, 307);
             this.listViewStudents.Sorting = System.Windows.Forms.SortOrder.Ascending;
@@ -245,7 +242,6 @@ namespace SomerenUI
             this.pictureBox1.Size = new System.Drawing.Size(130, 123);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // lbl_Students
             // 
@@ -267,7 +263,6 @@ namespace SomerenUI
             this.pnl_Teachers.Name = "pnl_Teachers";
             this.pnl_Teachers.Size = new System.Drawing.Size(940, 468);
             this.pnl_Teachers.TabIndex = 6;
-            this.pnl_Teachers.Paint += new System.Windows.Forms.PaintEventHandler(this.pnl_Teacher_Paint);
             // 
             // pictureBox2
             // 
@@ -288,7 +283,6 @@ namespace SomerenUI
             this.lbl_Teachers.Size = new System.Drawing.Size(115, 29);
             this.lbl_Teachers.TabIndex = 3;
             this.lbl_Teachers.Text = "Teachers";
-            this.lbl_Teachers.Click += new System.EventHandler(this.lbl_Teachers_Click);
             // 
             // listViewTeachers
             // 
@@ -305,7 +299,6 @@ namespace SomerenUI
             this.listViewTeachers.UseCompatibleStateImageBehavior = false;
             this.listViewTeachers.View = System.Windows.Forms.View.Details;
             this.listViewTeachers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewTeachers_ColumnClick);
-            this.listViewTeachers.SelectedIndexChanged += new System.EventHandler(this.listViewTeachers_SelectedIndexChanged);
             // 
             // TeacherID
             // 
@@ -328,7 +321,7 @@ namespace SomerenUI
             // 
             // pnl_Rooms
             // 
-            this.pnl_Rooms.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.pnl_Rooms.BackColor = System.Drawing.SystemColors.Control;
             this.pnl_Rooms.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnl_Rooms.Controls.Add(this.pictureBox3);
             this.pnl_Rooms.Controls.Add(this.lbl_Rooms);
@@ -357,14 +350,11 @@ namespace SomerenUI
             this.lbl_Rooms.Size = new System.Drawing.Size(90, 29);
             this.lbl_Rooms.TabIndex = 3;
             this.lbl_Rooms.Text = "Rooms";
-            this.lbl_Rooms.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // ListViewRooms
             // 
             this.ListViewRooms.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
-            this.columnHeader3,
-            this.columnHeader4,
             this.columnHeader5});
             this.ListViewRooms.HideSelection = false;
             this.ListViewRooms.Location = new System.Drawing.Point(16, 42);
@@ -373,19 +363,10 @@ namespace SomerenUI
             this.ListViewRooms.TabIndex = 5;
             this.ListViewRooms.UseCompatibleStateImageBehavior = false;
             this.ListViewRooms.View = System.Windows.Forms.View.Details;
-            this.ListViewRooms.SelectedIndexChanged += new System.EventHandler(this.ListView_Rooms_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
             this.columnHeader1.Text = "ID";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "FirstName";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "LastName";
             // 
             // columnHeader5
             // 
@@ -400,6 +381,7 @@ namespace SomerenUI
             this.Controls.Add(this.pnl_Teachers);
             this.Controls.Add(this.pnl_Dashboard);
             this.Controls.Add(this.pnl_Students);
+            this.Controls.Add(this.pnl_Rooms);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "SomerenUI";
@@ -422,6 +404,7 @@ namespace SomerenUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
@@ -459,8 +442,6 @@ namespace SomerenUI
         private System.Windows.Forms.Label lbl_Rooms;
         private System.Windows.Forms.ListView ListViewRooms;
         private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label2;
@@ -473,7 +454,6 @@ namespace SomerenUI
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ColumnHeader studentLastName;
         private System.Windows.Forms.ColumnHeader studentLastName;
     }
 }

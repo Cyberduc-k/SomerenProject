@@ -85,6 +85,7 @@ namespace SomerenUI
                 foreach (Teacher t in teacherList)
                 {
                     ListViewItem List = new ListViewItem(t.Id.ToString());
+
                     List.SubItems.Add(t.FirstName);
                     List.SubItems.Add(t.LastName);
                     List.SubItems.Add(t.RoomNumber.ToString());
@@ -99,28 +100,22 @@ namespace SomerenUI
                 pnl_Students.Hide();
                 pnl_Teachers.Hide();
 
-
                 // show rooms
                 pnl_Rooms.Show();
-
-                
 
                 // fill the rooms listview within the rooms panel with a list of rooms
                 SomerenLogic.Room_Service room_Service = new SomerenLogic.Room_Service();
                 List<Room> roomList = room_Service.GetRoom();
 
                 // clear the listview before filling it again
-                ListViewRooms.Clear();
+                ListViewRooms.Items.Clear();
 
-                foreach (SomerenModel.Room t in roomList)
+                foreach (Room t in roomList)
                 {
-                    ListViewItem ID = new ListViewItem(t.Number.ToString());
+                    ListViewItem li = new ListViewItem(t.Number.ToString());
 
-                    ID.SubItems.Add(t.Number.ToString());
-                    ID.SubItems.Add(t.Capacity.ToString());
-
-
-                    ListViewRooms.Items.Add(ID);
+                    li.SubItems.Add(t.Capacity.ToString());
+                    ListViewRooms.Items.Add(li);
                 }
             }
         }
@@ -138,11 +133,6 @@ namespace SomerenUI
         private void dashboardToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             showPanel("Dashboard");
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void img_Dashboard_Click(object sender, EventArgs e)
@@ -165,36 +155,6 @@ namespace SomerenUI
             showPanel("Teachers");
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnl_Teacher_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lbl_Teachers_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lbl_Students_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pnl_Students_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-        
-        private void listViewTeachers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void listViewTeachers_ColumnClick(object sender, ColumnClickEventArgs e)
         {
           
@@ -212,10 +172,10 @@ namespace SomerenUI
             sorter.Column = e.Column;
             listViewStudents.Sort();
         }
-        
-        private void listViewStudents_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
+        private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Rooms");
         }
     }
 }
