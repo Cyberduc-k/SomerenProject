@@ -161,7 +161,7 @@ namespace SomerenUI
             // teacherToolStripMenuItem
             // 
             this.teacherToolStripMenuItem.Name = "teacherToolStripMenuItem";
-            this.teacherToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.teacherToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.teacherToolStripMenuItem.Text = "Teachers";
             this.teacherToolStripMenuItem.Click += new System.EventHandler(this.teacherToolStripMenuItem_Click);
             // 
@@ -299,6 +299,7 @@ namespace SomerenUI
             this.listViewTeachers.UseCompatibleStateImageBehavior = false;
             this.listViewTeachers.View = System.Windows.Forms.View.Details;
             this.listViewTeachers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewTeachers_ColumnClick);
+            this.listViewTeachers.SelectedIndexChanged += new System.EventHandler(this.listViewTeachers_SelectedIndexChanged);
             // 
             // TeacherID
             // 
@@ -366,11 +367,11 @@ namespace SomerenUI
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "ID";
+            this.columnHeader1.Text = "Number";
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "RoomNumber";
+            this.columnHeader5.Text = "Capicity";
             // 
             // SomerenUI
             // 
