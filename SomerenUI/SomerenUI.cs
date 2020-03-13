@@ -76,7 +76,7 @@ namespace SomerenUI
                 pnl_Teachers.Show();
 
                 // clear the listview before filling it again
-                listViewTeachers.Clear();
+                listViewTeachers.Items.Clear();
 
                 // fill the teachers listview within the teachers panel with a list of teachers
                 SomerenLogic.Teacher_Service teacher_Service = new SomerenLogic.Teacher_Service();
@@ -84,9 +84,14 @@ namespace SomerenUI
                
                 foreach (Teacher t in teacherList)
                 {
-                    ListViewItem li = new ListViewItem(t.Name);
-                    listViewTeachers.Items.Add(li);
+                    ListViewItem List = new ListViewItem(t.Id.ToString());
+                    List.SubItems.Add(t.FirstName);
+                    List.SubItems.Add(t.LastName);
+                    List.SubItems.Add(t.RoomNumber.ToString());
+                    listViewTeachers.Items.Add(List);
+
                 }
+
 
             }
         }
@@ -159,6 +164,11 @@ namespace SomerenUI
         private void listViewTeachers_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void listViewTeachers_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+          
         }
 
         private void listViewStudents_ColumnClicked(object sender, ColumnClickEventArgs e)
