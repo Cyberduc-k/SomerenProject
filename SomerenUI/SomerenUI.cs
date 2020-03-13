@@ -37,13 +37,9 @@ namespace SomerenUI
                 pnl_Dashboard.Hide();
                 img_Dashboard.Hide();
                 pnl_Teachers.Hide();
-                
 
                 // show students
                 pnl_Students.Show();
-
-
-                
 
                 // fill the students listview within the students panel with a list of students
                 SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
@@ -71,7 +67,6 @@ namespace SomerenUI
                 img_Dashboard.Hide();
                 pnl_Students.Hide();
                 
-                
                 // show teachers
                 pnl_Teachers.Show();
 
@@ -89,10 +84,7 @@ namespace SomerenUI
                     List.SubItems.Add(t.LastName);
                     List.SubItems.Add(t.RoomNumber.ToString());
                     listViewTeachers.Items.Add(List);
-
                 }
-
-
             }
         }
 
