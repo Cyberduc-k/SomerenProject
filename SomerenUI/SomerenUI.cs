@@ -1,15 +1,7 @@
-﻿using SomerenLogic;
-using SomerenModel;
+﻿using SomerenModel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-
 
 namespace SomerenUI
 {
@@ -18,6 +10,8 @@ namespace SomerenUI
         public SomerenUI()
         {
             InitializeComponent();
+
+            listViewStudents.ListViewItemSorter = new StudentsListComparer(0);
         }
 
         private void SomerenUI_Load(object sender, EventArgs e)
@@ -27,10 +21,8 @@ namespace SomerenUI
 
         private void showPanel(string panelName)
         {
-
             if(panelName == "Dashboard")
             {
-
                 // hide all other panels
                 pnl_Students.Hide();
                 pnl_Teachers.Hide();
@@ -60,12 +52,17 @@ namespace SomerenUI
                 List<Student> studentList = studService.GetStudents();
 
                 // clear the listview before filling it again
-                listViewStudents.Clear();
+                listViewStudents.Items.Clear();
 
-                foreach (SomerenModel.Student s in studentList)
+                foreach (Student s in studentList)
                 {
+                    ListViewItem li = new ListViewItem(s.Id.ToString());
 
-                    ListViewItem li = new ListViewItem(s.Name);
+                    li.Tag = s;
+                    li.SubItems.Add(s.FirstName);
+                    li.SubItems.Add(s.LastName);
+                    li.SubItems.Add(s.BirthDate.ToString("dd-mm-yyyy"));
+
                     listViewStudents.Items.Add(li);
                 }
             }
@@ -88,7 +85,7 @@ namespace SomerenUI
                 SomerenLogic.Teacher_Service teacher_Service = new SomerenLogic.Teacher_Service();
                 List<Teacher> teacherList = teacher_Service.GetTeacher();
                
-                foreach (SomerenModel.Teacher t in teacherList)
+                foreach (Teacher t in teacherList)
                 {
                     ListViewItem li = new ListViewItem(t.Name);
                     listViewTeachers.Items.Add(li);
@@ -195,20 +192,23 @@ namespace SomerenUI
         {
 
         }
-
-        private void label1_Click_1(object sender, EventArgs e)
+        
+        private void listViewTeachers_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void ListView_Rooms_SelectedIndexChanged(object sender, EventArgs e)
+        private void listViewStudents_ColumnClicked(object sender, ColumnClickEventArgs e)
         {
+            StudentsListComparer sorter = (StudentsListComparer)listViewStudents.ListViewItemSorter;
 
-        }
+            if (sorter.SortOrder == SortOrder.Ascending)
+                sorter.SortOrder = SortOrder.Descending;
+            else
+                sorter.SortOrder = SortOrder.Ascending;
 
-        private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            showPanel("Rooms");
+            sorter.Column = e.Column;
+            listViewStudents.Sort();
         }
 
         private void listViewStudents_SelectedIndexChanged(object sender, EventArgs e)

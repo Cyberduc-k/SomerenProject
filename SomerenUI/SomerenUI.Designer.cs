@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SomerenUI));
             this.img_Dashboard = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -524,6 +525,7 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
+
         }
 
         #endregion
@@ -545,7 +547,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ListView listViewStudents;
         private System.Windows.Forms.ColumnHeader studentID;
-        private System.Windows.Forms.ColumnHeader studentName;
+        private System.Windows.Forms.ColumnHeader studentFirstName;
         private System.Windows.Forms.ColumnHeader studentDOB;
         private System.Windows.Forms.ToolStripMenuItem teacherToolStripMenuItem;
         private System.Windows.Forms.Panel pnl_Teachers;
@@ -557,6 +559,7 @@
         private System.Windows.Forms.ColumnHeader TeacherFirstName;
         private System.Windows.Forms.ColumnHeader TeacherLastName;
         private System.Windows.Forms.ColumnHeader TeacherRoomNumber;
+
         private System.Windows.Forms.Panel pnl_Rooms;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label lbl_Rooms;
@@ -576,6 +579,9 @@
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+
+        private System.Windows.Forms.ColumnHeader studentLastName;
+
     }
 }
 

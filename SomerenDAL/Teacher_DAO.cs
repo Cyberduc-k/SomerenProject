@@ -11,7 +11,7 @@ namespace SomerenDAL
     {
         public List<Teacher> Db_Get_All_Teachers()
         {
-            string query = "SELECT * FROM [Docenten]";
+            string query = "SELECT DocentID, Voornaam, Achternaam, KamerID FROM [Docenten]";
             SqlParameter[] sqlParameters = new SqlParameter[0];
 
             return ReadTeacher(ExecuteSelectQuery(query, sqlParameters));
@@ -28,7 +28,8 @@ namespace SomerenDAL
                     FirstName = (string)dr["Voornaam"],
                     LastName = (string)dr["Achternaam"],
                     RoomNumber = (int)dr["KamerID"],
-
+                    //test
+                    //test2
                 };
 
                 teachers.Add(teacher);
