@@ -184,6 +184,7 @@
             // pnl_Dashboard
             // 
             this.pnl_Dashboard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_Dashboard.Controls.Add(this.pnl_Rooms);
             this.pnl_Dashboard.Controls.Add(this.lbl_Dashboard);
             this.pnl_Dashboard.Controls.Add(this.img_Dashboard);
             this.pnl_Dashboard.Location = new System.Drawing.Point(20, 41);
@@ -335,7 +336,7 @@
             this.pnl_Rooms.Controls.Add(this.pictureBox3);
             this.pnl_Rooms.Controls.Add(this.lbl_Rooms);
             this.pnl_Rooms.Controls.Add(this.ListViewRooms);
-            this.pnl_Rooms.Location = new System.Drawing.Point(16, 37);
+            this.pnl_Rooms.Location = new System.Drawing.Point(3, 3);
             this.pnl_Rooms.Name = "pnl_Rooms";
             this.pnl_Rooms.Size = new System.Drawing.Size(940, 468);
             this.pnl_Rooms.TabIndex = 9;
@@ -481,7 +482,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(985, 529);
-            this.Controls.Add(this.pnl_Rooms);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pnl_Dashboard);
             this.Controls.Add(this.pnl_Students);
