@@ -26,10 +26,12 @@ namespace SomerenUI
                 // hide all other panels
                 pnl_Students.Hide();
                 pnl_Teachers.Hide();
+                pnl_Rooms.Hide();
 
                 // show dashboard
                 pnl_Dashboard.Show();
                 img_Dashboard.Show();
+
             }
             else if(panelName == "Students")
             {
@@ -37,6 +39,7 @@ namespace SomerenUI
                 pnl_Dashboard.Hide();
                 img_Dashboard.Hide();
                 pnl_Teachers.Hide();
+                pnl_Rooms.Hide();
 
                 // show students
                 pnl_Students.Show();
@@ -62,10 +65,12 @@ namespace SomerenUI
             }
             else if (panelName == "Teachers")
             {
+                
                 // hide all other panels
                 pnl_Dashboard.Hide();
                 img_Dashboard.Hide();
                 pnl_Students.Hide();
+                pnl_Rooms.Hide();
                 
                 // show teachers
                 pnl_Teachers.Show();
@@ -84,6 +89,38 @@ namespace SomerenUI
                     List.SubItems.Add(t.LastName);
                     List.SubItems.Add(t.RoomNumber.ToString());
                     listViewTeachers.Items.Add(List);
+                }         
+            }
+            else if (panelName == "Rooms")
+            {
+                // hide all other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Students.Hide();
+                pnl_Teachers.Hide();
+
+
+                // show rooms
+                pnl_Rooms.Show();
+
+                
+
+                // fill the rooms listview within the rooms panel with a list of rooms
+                SomerenLogic.Room_Service room_Service = new SomerenLogic.Room_Service();
+                List<Room> roomList = room_Service.GetRoom();
+
+                // clear the listview before filling it again
+                ListViewRooms.Clear();
+
+                foreach (SomerenModel.Room t in roomList)
+                {
+                    ListViewItem ID = new ListViewItem(t.Number.ToString());
+
+                    ID.SubItems.Add(t.Number.ToString());
+                    ID.SubItems.Add(t.Capacity.ToString());
+
+
+                    ListViewRooms.Items.Add(ID);
                 }
             }
         }
@@ -152,7 +189,7 @@ namespace SomerenUI
         {
 
         }
-
+        
         private void listViewTeachers_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -174,6 +211,11 @@ namespace SomerenUI
 
             sorter.Column = e.Column;
             listViewStudents.Sort();
+        }
+        
+        private void listViewStudents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
