@@ -210,5 +210,10 @@ namespace SomerenUI
         {
             showPanel("Rooms");
         }
+
+        private void listViewStudents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
