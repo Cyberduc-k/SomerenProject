@@ -364,6 +364,7 @@ namespace SomerenUI
             this.ListViewRooms.TabIndex = 5;
             this.ListViewRooms.UseCompatibleStateImageBehavior = false;
             this.ListViewRooms.View = System.Windows.Forms.View.Details;
+            this.ListViewRooms.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewRooms_ColumnClicked);
             // 
             // columnHeader1
             // 

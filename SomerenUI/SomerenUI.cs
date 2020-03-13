@@ -12,6 +12,7 @@ namespace SomerenUI
             InitializeComponent();
 
             listViewStudents.ListViewItemSorter = new StudentsListComparer(0);
+            ListViewRooms.ListViewItemSorter = new RoomsListComparer(0);
         }
 
         private void SomerenUI_Load(object sender, EventArgs e)
@@ -112,9 +113,15 @@ namespace SomerenUI
 
                 foreach (Room t in roomList)
                 {
+
                     ListViewItem li = new ListViewItem(t.Number.ToString());
 
+
+
+                    li.Tag = t;
                     li.SubItems.Add(t.Capacity.ToString());
+
+
                     ListViewRooms.Items.Add(li);
                 }
             }
@@ -176,6 +183,18 @@ namespace SomerenUI
         private void roomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Rooms");
+        }
+        private void listViewRooms_ColumnClicked(object sender, ColumnClickEventArgs e)
+        {
+            RoomsListComparer sorter = (RoomsListComparer)ListViewRooms.ListViewItemSorter;
+
+            if (sorter.SortOrder == SortOrder.Ascending)
+                sorter.SortOrder = SortOrder.Descending;
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+
+            sorter.Column = e.Column;
+            ListViewRooms.Sort();
         }
 
         private void listViewTeachers_SelectedIndexChanged(object sender, EventArgs e)
