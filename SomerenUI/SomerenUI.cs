@@ -12,6 +12,7 @@ namespace SomerenUI
             InitializeComponent();
 
             listViewStudents.ListViewItemSorter = new StudentsListComparer(0);
+            listViewTeachers.ListViewItemSorter = new TeachersListComparer(0);
         }
 
         private void SomerenUI_Load(object sender, EventArgs e)
@@ -85,7 +86,7 @@ namespace SomerenUI
                 foreach (Teacher t in teacherList)
                 {
                     ListViewItem List = new ListViewItem(t.Id.ToString());
-
+                    List.Tag = t;
                     List.SubItems.Add(t.FirstName);
                     List.SubItems.Add(t.LastName);
                     List.SubItems.Add(t.RoomNumber.ToString());
@@ -157,7 +158,14 @@ namespace SomerenUI
 
         private void listViewTeachers_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-          
+            TeachersListComparer sorter = (TeachersListComparer)listViewTeachers.ListViewItemSorter;
+            if (sorter.SortOrder == SortOrder.Ascending)
+                sorter.SortOrder = SortOrder.Descending;
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+
+            sorter.Column = e.Column;
+            listViewTeachers.Sort();
         }
 
         private void listViewStudents_ColumnClicked(object sender, ColumnClickEventArgs e)
