@@ -34,6 +34,7 @@ namespace SomerenUI
             pnl_Teachers.Hide();
             pnl_Rooms.Hide();
             pnl_Sales.Hide();
+            pnl_Register.Hide();
         }
 
         private void showPanel(string panelName)
@@ -94,7 +95,10 @@ namespace SomerenUI
             {
                 // show rooms
                 pnl_Rooms.Show();
+                pnl_Rooms.Show();
+              
 
+ 
                 // fill the rooms listview within the rooms panel with a list of rooms
                 List<Room> roomList = room_Service.GetRoom();
 
@@ -110,6 +114,48 @@ namespace SomerenUI
 
                     ListViewRooms.Items.Add(li);
                 }
+
+            }
+            else if (panelName == "Register")
+            {
+                // show Register
+                pnl_Register.Show();
+
+                // fill the rooms listview within the rooms panel with a list of rooms
+                SomerenLogic.Drink_Service Drink_Service = new SomerenLogic.Drink_Service();
+                List<Drink> DrinkList = Drink_Service.GetDrink();
+
+                SomerenLogic.Student_Service student_Service = new SomerenLogic.Student_Service();
+                List<Student> StudentList = student_Service.GetStudents();
+
+                // clear the listview before filling it again
+                listView_Register.Items.Clear();
+
+
+                foreach (Drink t in DrinkList)
+                {
+
+                    ListViewItem li = new ListViewItem(t.Id.ToString());
+
+                    li.Tag = t;
+                    li.SubItems.Add(t.Name.ToString());
+                    li.SubItems.Add(t.Price.ToString());
+                    li.SubItems.Add(t.Alcoholic.ToString());
+
+                    listView_Register.Items.Add(li);
+                }
+                foreach (Student t in StudentList)
+                {
+
+                    ListViewItem li = new ListViewItem(t.Id.ToString());
+
+                    li.Tag = t;
+                    li.SubItems.Add(t.FirstName.ToString());
+                    li.SubItems.Add(t.LastName.ToString());
+
+                    listView_Register2.Items.Add(li);
+                }
+
             }
             else if (panelName == "Sales")
             {
@@ -251,14 +297,19 @@ namespace SomerenUI
             showPanel("Sales");
         }
 
-        private void calendar_Start_DateChanged(object sender, DateRangeEventArgs e)
-        {
-            updateSales();
-        }
-
         private void calendar_End_DateChanged(object sender, DateRangeEventArgs e)
         {
             updateSales();
+        }
+        
+        private void registerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Register");
+        }
+
+        private void listView_Register2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
         }
     }
 }

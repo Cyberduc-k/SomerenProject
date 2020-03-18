@@ -74,6 +74,19 @@ namespace SomerenUI
             this.ch_Sold = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ch_Total = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ch_Customers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.registerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnl_Register = new System.Windows.Forms.Panel();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.lbl_Register = new System.Windows.Forms.Label();
+            this.listView_Register = new System.Windows.Forms.ListView();
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.listView_Register2 = new System.Windows.Forms.ListView();
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
@@ -84,6 +97,7 @@ namespace SomerenUI
             this.pnl_Rooms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.pnl_Sales.SuspendLayout();
+            this.pnl_Register.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,6 +120,9 @@ namespace SomerenUI
             this.studentsToolStripMenuItem,
             this.teacherToolStripMenuItem,
             this.roomsToolStripMenuItem});
+            this.roomsToolStripMenuItem,
+            this.teacherToolStripMenuItem,
+            this.registerToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
@@ -407,6 +424,25 @@ namespace SomerenUI
             this.pnl_Sales.Name = "pnl_Sales";
             this.pnl_Sales.Size = new System.Drawing.Size(940, 368);
             this.pnl_Sales.TabIndex = 10;
+            // registerToolStripMenuItem
+            // 
+            this.registerToolStripMenuItem.Name = "registerToolStripMenuItem";
+            this.registerToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.registerToolStripMenuItem.Text = "Register";
+            this.registerToolStripMenuItem.Click += new System.EventHandler(this.registerToolStripMenuItem_Click);
+            // 
+            // pnl_Register
+            // 
+            this.pnl_Register.BackColor = System.Drawing.SystemColors.Control;
+            this.pnl_Register.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_Register.Controls.Add(this.listView_Register2);
+            this.pnl_Register.Controls.Add(this.pictureBox6);
+            this.pnl_Register.Controls.Add(this.lbl_Register);
+            this.pnl_Register.Controls.Add(this.listView_Register);
+            this.pnl_Register.Location = new System.Drawing.Point(20, 41);
+            this.pnl_Register.Name = "pnl_Register";
+            this.pnl_Register.Size = new System.Drawing.Size(940, 468);
+            this.pnl_Register.TabIndex = 10;
             // 
             // pictureBox6
             // 
@@ -470,6 +506,73 @@ namespace SomerenUI
             // ch_Customers
             // 
             this.ch_Customers.Text = "Customers";
+            // lbl_Register
+            // 
+            this.lbl_Register.AutoSize = true;
+            this.lbl_Register.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Register.Location = new System.Drawing.Point(10, 10);
+            this.lbl_Register.Name = "lbl_Register";
+            this.lbl_Register.Size = new System.Drawing.Size(104, 29);
+            this.lbl_Register.TabIndex = 3;
+            this.lbl_Register.Text = "Register";
+            // 
+            // listView_Register
+            // 
+            this.listView_Register.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader10,
+            this.columnHeader11,
+            this.columnHeader12,
+            this.columnHeader13});
+            this.listView_Register.HideSelection = false;
+            this.listView_Register.Location = new System.Drawing.Point(16, 42);
+            this.listView_Register.Name = "listView_Register";
+            this.listView_Register.Size = new System.Drawing.Size(245, 307);
+            this.listView_Register.TabIndex = 5;
+            this.listView_Register.UseCompatibleStateImageBehavior = false;
+            this.listView_Register.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.Text = "DrinkID";
+            // 
+            // columnHeader11
+            // 
+            this.columnHeader11.Text = "Name";
+            // 
+            // columnHeader12
+            // 
+            this.columnHeader12.Text = "Price";
+            // 
+            // columnHeader13
+            // 
+            this.columnHeader13.Text = "Alcoholic";
+            // 
+            // listView_Register2
+            // 
+            this.listView_Register2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4});
+            this.listView_Register2.HideSelection = false;
+            this.listView_Register2.Location = new System.Drawing.Point(287, 42);
+            this.listView_Register2.Name = "listView_Register2";
+            this.listView_Register2.Size = new System.Drawing.Size(245, 307);
+            this.listView_Register2.TabIndex = 6;
+            this.listView_Register2.UseCompatibleStateImageBehavior = false;
+            this.listView_Register2.View = System.Windows.Forms.View.Details;
+            this.listView_Register2.SelectedIndexChanged += new System.EventHandler(this.listView_Register2_SelectedIndexChanged);
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "StudentID";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "FirstName";
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "LastName";
             // 
             // SomerenUI
             // 
@@ -479,6 +582,7 @@ namespace SomerenUI
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pnl_Sales);
             this.Controls.Add(this.pnl_Rooms);
+            this.Controls.Add(this.pnl_Register);
             this.Controls.Add(this.pnl_Teachers);
             this.Controls.Add(this.pnl_Students);
             this.Controls.Add(this.pnl_Dashboard);
@@ -504,6 +608,8 @@ namespace SomerenUI
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.pnl_Sales.ResumeLayout(false);
             this.pnl_Sales.PerformLayout();
+            this.pnl_Register.ResumeLayout(false);
+            this.pnl_Register.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -568,6 +674,19 @@ namespace SomerenUI
         private System.Windows.Forms.ColumnHeader ch_Customers;
         private System.Windows.Forms.Label lbl_Term;
         private System.Windows.Forms.MonthCalendar calendarTerm;
+        private System.Windows.Forms.ToolStripMenuItem registerToolStripMenuItem;
+        private System.Windows.Forms.Panel pnl_Register;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.Label lbl_Register;
+        private System.Windows.Forms.ListView listView_Register;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.ColumnHeader columnHeader11;
+        private System.Windows.Forms.ColumnHeader columnHeader12;
+        private System.Windows.Forms.ColumnHeader columnHeader13;
+        private System.Windows.Forms.ListView listView_Register2;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
 
