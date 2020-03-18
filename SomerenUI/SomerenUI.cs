@@ -1,6 +1,7 @@
 ﻿using SomerenModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SomerenUI
@@ -166,26 +167,44 @@ namespace SomerenUI
 
         private void updateSales()
         {
-            validateDates(calendarTerm.SelectionStart, calendarTerm.SelectionEnd);
+            validateDates(calendarTerm.SelectionStart.Date, calendarTerm.SelectionEnd.Date);
 
             List<Order> allOrders = orderService.GetAllInRange(calendarTerm.SelectionStart, calendarTerm.SelectionEnd);
-            List<int> customers = new List<int>();
-            int sold = 0;
-            int total = 0;
+            Dictionary<DateTime, List<Order>> ordersByDate = allOrders
+                .GroupBy(order => order.Date.Date)
+                .ToDictionary(kv => kv.Key, kv => kv.ToList());
 
-            foreach (Order order in allOrders)
+            lv_Sales.Items.Clear();
+
+            foreach (KeyValuePair<DateTime, List<Order>> pair in ordersByDate)
             {
-                sold += order.Number;
-                total += order.Drink.Price * order.Number;
+                List<Order> orders = pair.Value;
+                List<int> customers = new List<int>();
+                int sold = 0;
+                int total = 0;
 
-                if (!customers.Contains(order.Student.Id))
-                    customers.Add(order.Student.Id);
+                foreach (Order order in orders)
+                {
+                    sold += order.Number;
+                    total += order.Drink.Price * order.Number;
+
+                    if (!customers.Contains(order.Student.Id))
+                        customers.Add(order.Student.Id);
+                }
+
+                ListViewItem li = new ListViewItem(pair.Key.ToString("dd-MM-yyyy"));
+
+                li.SubItems.Add(sold.ToString());
+                li.SubItems.Add(total.ToString());
+                li.SubItems.Add(customers.Count.ToString());
+
+                lv_Sales.Items.Add(li);
             }
         }
         
         private void validateDates(DateTime start, DateTime end)
         {
-            DateTime today = DateTime.Today;
+            DateTime today = DateTime.Today.Date;
 
             if (start > today)
             {
@@ -198,7 +217,6 @@ namespace SomerenUI
             {
                 MessageBox.Show("Invalid end date selected");
 
-                calendarTerm.SelectionStart = today;
                 calendarTerm.SelectionEnd = today;
             }
 
