@@ -127,6 +127,21 @@ namespace SomerenUI
                     ListViewRooms.Items.Add(li);
                 }
             }
+            else if (panelName == "Stock")
+            {
+                // hide all other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Students.Hide();
+                pnl_Rooms.Hide();
+                pnl_Teachers.Hide();
+
+                // show Stock
+                pnl_Stock.Show();
+
+                // clear the listview before filling it again
+                listViewStock.Items.Clear();
+            }
         }
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
@@ -209,6 +224,11 @@ namespace SomerenUI
         private void listViewTeachers_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Stock");
         }
     }
 }

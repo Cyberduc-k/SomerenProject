@@ -45,7 +45,8 @@ namespace SomerenUI
             else if (Column == 3)
                 return decimal.Compare(a.RoomNumber, b.RoomNumber) * order;
             else
-                return bool.Parse.Compare(a.Lead, b.Lead) * order;
+                return a.Lead == b.Lead ? 0 : a.Lead ? order: - order;
+
         }
     }
 }
