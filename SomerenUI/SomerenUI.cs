@@ -91,6 +91,7 @@ namespace SomerenUI
                     List.SubItems.Add(t.FirstName);
                     List.SubItems.Add(t.LastName);
                     List.SubItems.Add(t.RoomNumber.ToString());
+                    List.SubItems.Add(t.Lead.ToString());
                     listViewTeachers.Items.Add(List);
                 }         
             }

@@ -29,7 +29,7 @@ namespace SomerenDAL
                     FirstName = (string)dr["Voornaam"],
                     LastName = (string)dr["Achternaam"],
                     RoomNumber = (int)dr["KamerID"],
-                   
+                    Lead = (bool)dr["Begeleider"],
                 };
 
                 teachers.Add(teacher);
