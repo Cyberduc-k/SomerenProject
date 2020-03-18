@@ -29,6 +29,7 @@ namespace SomerenUI
                 pnl_Students.Hide();
                 pnl_Teachers.Hide();
                 pnl_Rooms.Hide();
+                pnl_Register.Hide();
 
                 // show dashboard
                 pnl_Dashboard.Show();
@@ -42,6 +43,7 @@ namespace SomerenUI
                 img_Dashboard.Hide();
                 pnl_Teachers.Hide();
                 pnl_Rooms.Hide();
+                pnl_Register.Hide();
 
                 // show students
                 pnl_Students.Show();
@@ -73,7 +75,8 @@ namespace SomerenUI
                 img_Dashboard.Hide();
                 pnl_Students.Hide();
                 pnl_Rooms.Hide();
-                
+                pnl_Register.Hide();
+
                 // show teachers
                 pnl_Teachers.Show();
 
@@ -101,10 +104,14 @@ namespace SomerenUI
                 img_Dashboard.Hide();
                 pnl_Students.Hide();
                 pnl_Teachers.Hide();
+                pnl_Register.Hide();
 
                 // show rooms
                 pnl_Rooms.Show();
+                pnl_Rooms.Show();
+              
 
+ 
                 // fill the rooms listview within the rooms panel with a list of rooms
                 SomerenLogic.Room_Service room_Service = new SomerenLogic.Room_Service();
                 List<Room> roomList = room_Service.GetRoom();
@@ -125,6 +132,58 @@ namespace SomerenUI
 
                     ListViewRooms.Items.Add(li);
                 }
+
+            }
+            else if (panelName == "Register")
+            {
+                // hide all other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Students.Hide();
+                pnl_Teachers.Hide();
+                pnl_Rooms.Hide();
+
+                // show Register
+                pnl_Register.Show();
+                pnl_Register.Show();
+
+
+
+                // fill the rooms listview within the rooms panel with a list of rooms
+                SomerenLogic.Drink_Service Drink_Service = new SomerenLogic.Drink_Service();
+                List<Drink> DrinkList = Drink_Service.GetDrink();
+
+                SomerenLogic.Student_Service student_Service = new SomerenLogic.Student_Service();
+                List<Student> StudentList = student_Service.GetStudents();
+
+                // clear the listview before filling it again
+                listView_Register.Items.Clear();
+
+
+                foreach (Drink t in DrinkList)
+                {
+
+                    ListViewItem li = new ListViewItem(t.Id.ToString());
+
+                    li.Tag = t;
+                    li.SubItems.Add(t.Name.ToString());
+                    li.SubItems.Add(t.Price.ToString());
+                    li.SubItems.Add(t.Alcoholic.ToString());
+
+                    listView_Register.Items.Add(li);
+                }
+                foreach (Student t in StudentList)
+                {
+
+                    ListViewItem li = new ListViewItem(t.Id.ToString());
+
+                    li.Tag = t;
+                    li.SubItems.Add(t.FirstName.ToString());
+                    li.SubItems.Add(t.LastName.ToString());
+
+                    listView_Register2.Items.Add(li);
+                }
+
             }
         }
 
@@ -206,6 +265,16 @@ namespace SomerenUI
         }
 
         private void listViewTeachers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void registerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Register");
+        }
+
+        private void listView_Register2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
