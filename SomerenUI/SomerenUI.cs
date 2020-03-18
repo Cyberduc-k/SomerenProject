@@ -228,6 +228,7 @@ namespace SomerenUI
         {
             showPanel("Rooms");
         }
+
         private void listViewRooms_ColumnClicked(object sender, ColumnClickEventArgs e)
         {
             RoomsListComparer sorter = (RoomsListComparer)ListViewRooms.ListViewItemSorter;
