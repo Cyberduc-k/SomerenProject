@@ -7,6 +7,12 @@ namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
+        private SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
+        private SomerenLogic.Teacher_Service teacher_Service = new SomerenLogic.Teacher_Service();
+        private SomerenLogic.Room_Service room_Service = new SomerenLogic.Room_Service();
+        private SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
+        private SomerenLogic.Drink_Service Drink_Service = new SomerenLogic.Drink_Service();
+
         public SomerenUI()
         {
             InitializeComponent();
@@ -21,35 +27,33 @@ namespace SomerenUI
             showPanel("Dashboard");
         }
 
+        private void hideAllPanels()
+        {
+            pnl_Dashboard.Hide();
+            img_Dashboard.Hide();
+            pnl_Students.Hide();
+            pnl_Teachers.Hide();
+            pnl_Rooms.Hide();
+            pnl_Sales.Hide();
+            pnl_Register.Hide();
+        }
+
         private void showPanel(string panelName)
         {
+            hideAllPanels();
+
             if(panelName == "Dashboard")
             {
-                // hide all other panels
-                pnl_Students.Hide();
-                pnl_Teachers.Hide();
-                pnl_Rooms.Hide();
-                pnl_Register.Hide();
-
                 // show dashboard
                 pnl_Dashboard.Show();
                 img_Dashboard.Show();
-
             }
             else if(panelName == "Students")
             {
-                // hide all other panels
-                pnl_Dashboard.Hide();
-                img_Dashboard.Hide();
-                pnl_Teachers.Hide();
-                pnl_Rooms.Hide();
-                pnl_Register.Hide();
-
                 // show students
                 pnl_Students.Show();
 
                 // fill the students listview within the students panel with a list of students
-                SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
                 List<Student> studentList = studService.GetStudents();
 
                 // clear the listview before filling it again
@@ -69,14 +73,6 @@ namespace SomerenUI
             }
             else if (panelName == "Teachers")
             {
-                
-                // hide all other panels
-                pnl_Dashboard.Hide();
-                img_Dashboard.Hide();
-                pnl_Students.Hide();
-                pnl_Rooms.Hide();
-                pnl_Register.Hide();
-
                 // show teachers
                 pnl_Teachers.Show();
 
@@ -84,7 +80,6 @@ namespace SomerenUI
                 listViewTeachers.Items.Clear();
 
                 // fill the teachers listview within the teachers panel with a list of teachers
-                SomerenLogic.Teacher_Service teacher_Service = new SomerenLogic.Teacher_Service();
                 List<Teacher> teacherList = teacher_Service.GetTeacher();
                
                 foreach (Teacher t in teacherList)
@@ -99,13 +94,6 @@ namespace SomerenUI
             }
             else if (panelName == "Rooms")
             {
-                // hide all other panels
-                pnl_Dashboard.Hide();
-                img_Dashboard.Hide();
-                pnl_Students.Hide();
-                pnl_Teachers.Hide();
-                pnl_Register.Hide();
-
                 // show rooms
                 pnl_Rooms.Show();
                 pnl_Rooms.Show();
@@ -113,7 +101,6 @@ namespace SomerenUI
 
  
                 // fill the rooms listview within the rooms panel with a list of rooms
-                SomerenLogic.Room_Service room_Service = new SomerenLogic.Room_Service();
                 List<Room> roomList = room_Service.GetRoom();
 
                 // clear the listview before filling it again
@@ -121,14 +108,10 @@ namespace SomerenUI
 
                 foreach (Room t in roomList)
                 {
-
                     ListViewItem li = new ListViewItem(t.Number.ToString());
-
-
 
                     li.Tag = t;
                     li.SubItems.Add(t.Capacity.ToString());
-
 
                     ListViewRooms.Items.Add(li);
                 }
@@ -136,21 +119,10 @@ namespace SomerenUI
             }
             else if (panelName == "Register")
             {
-                // hide all other panels
-                pnl_Dashboard.Hide();
-                img_Dashboard.Hide();
-                pnl_Students.Hide();
-                pnl_Teachers.Hide();
-                pnl_Rooms.Hide();
-
                 // show Register
                 pnl_Register.Show();
-                pnl_Register.Show();
-
-
 
                 // fill the rooms listview within the rooms panel with a list of rooms
-                SomerenLogic.Drink_Service Drink_Service = new SomerenLogic.Drink_Service();
                 List<Drink> DrinkList = Drink_Service.GetDrink();
 
                 SomerenLogic.Student_Service student_Service = new SomerenLogic.Student_Service();
@@ -184,6 +156,57 @@ namespace SomerenUI
                     listView_Register2.Items.Add(li);
                 }
 
+            }
+            else if (panelName == "Sales")
+            {
+                pnl_Sales.Show();
+                updateSales();
+            }
+        }
+
+        private void updateSales()
+        {
+            validateDates(calendarTerm.SelectionStart, calendarTerm.SelectionEnd);
+
+            List<Order> allOrders = orderService.GetAllInRange(calendarTerm.SelectionStart, calendarTerm.SelectionEnd);
+            List<int> customers = new List<int>();
+            int sold = 0;
+            int total = 0;
+
+            foreach (Order order in allOrders)
+            {
+                sold += order.Number;
+                total += order.Drink.Price * order.Number;
+
+                if (!customers.Contains(order.Student.Id))
+                    customers.Add(order.Student.Id);
+            }
+        }
+        
+        private void validateDates(DateTime start, DateTime end)
+        {
+            DateTime today = DateTime.Today;
+
+            if (start > today)
+            {
+                MessageBox.Show("Invalid start date selected");
+
+                calendarTerm.SelectionStart = today;
+            }
+
+            if (end > today)
+            {
+                MessageBox.Show("Invalid end date selected");
+
+                calendarTerm.SelectionStart = today;
+                calendarTerm.SelectionEnd = today;
+            }
+
+            if (start > end)
+            {
+                MessageBox.Show("Start date is after end date");
+
+                calendarTerm.SelectionRange.Start = calendarTerm.SelectionRange.End;
             }
         }
 
@@ -251,6 +274,7 @@ namespace SomerenUI
         {
             showPanel("Rooms");
         }
+
         private void listViewRooms_ColumnClicked(object sender, ColumnClickEventArgs e)
         {
             RoomsListComparer sorter = (RoomsListComparer)ListViewRooms.ListViewItemSorter;
@@ -269,6 +293,16 @@ namespace SomerenUI
 
         }
 
+        private void salesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Sales");
+        }
+
+        private void calendar_End_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            updateSales();
+        }
+        
         private void registerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Register");
@@ -276,7 +310,7 @@ namespace SomerenUI
 
         private void listView_Register2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+        
         }
     }
 }
