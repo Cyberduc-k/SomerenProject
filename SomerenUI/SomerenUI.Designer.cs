@@ -76,7 +76,6 @@ namespace SomerenUI
             this.ch_Customers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.registerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnl_Register = new System.Windows.Forms.Panel();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.lbl_Register = new System.Windows.Forms.Label();
             this.listView_Register = new System.Windows.Forms.ListView();
             this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -119,9 +118,7 @@ namespace SomerenUI
             this.activitiesToolStripMenuItem,
             this.studentsToolStripMenuItem,
             this.teacherToolStripMenuItem,
-            this.roomsToolStripMenuItem});
             this.roomsToolStripMenuItem,
-            this.teacherToolStripMenuItem,
             this.registerToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -676,7 +673,6 @@ namespace SomerenUI
         private System.Windows.Forms.MonthCalendar calendarTerm;
         private System.Windows.Forms.ToolStripMenuItem registerToolStripMenuItem;
         private System.Windows.Forms.Panel pnl_Register;
-        private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label lbl_Register;
         private System.Windows.Forms.ListView listView_Register;
         private System.Windows.Forms.ColumnHeader columnHeader10;

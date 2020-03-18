@@ -11,6 +11,7 @@ namespace SomerenUI
         private SomerenLogic.Teacher_Service teacher_Service = new SomerenLogic.Teacher_Service();
         private SomerenLogic.Room_Service room_Service = new SomerenLogic.Room_Service();
         private SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
+        private SomerenLogic.Drink_Service Drink_Service = new SomerenLogic.Drink_Service();
 
         public SomerenUI()
         {
@@ -122,7 +123,6 @@ namespace SomerenUI
                 pnl_Register.Show();
 
                 // fill the rooms listview within the rooms panel with a list of rooms
-                SomerenLogic.Drink_Service Drink_Service = new SomerenLogic.Drink_Service();
                 List<Drink> DrinkList = Drink_Service.GetDrink();
 
                 SomerenLogic.Student_Service student_Service = new SomerenLogic.Student_Service();
