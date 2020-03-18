@@ -42,8 +42,10 @@ namespace SomerenUI
                 return string.Compare(a.FirstName, b.FirstName) * order;
             else if (Column == 2)
                 return string.Compare(a.LastName, b.LastName) * order;
-            else
+            else if (Column == 3)
                 return decimal.Compare(a.RoomNumber, b.RoomNumber) * order;
+            else
+                return bool.Parse.Compare(a.Lead, b.Lead) * order;
         }
     }
 }
