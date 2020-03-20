@@ -169,6 +169,8 @@ namespace SomerenUI
         {
             validateDates(calendarTerm.SelectionStart.Date, calendarTerm.SelectionEnd.Date);
 
+            lbl_Term.Text = $"Term: {calendarTerm.SelectionStart.Date.ToString("dd-MM-yyyy")} - {calendarTerm.SelectionEnd.Date.ToString("dd-MM-yyyy")}";
+
             List<Order> allOrders = orderService.GetAllInRange(calendarTerm.SelectionStart, calendarTerm.SelectionEnd);
             Dictionary<DateTime, List<Order>> ordersByDate = allOrders
                 .GroupBy(order => order.Date.Date)
