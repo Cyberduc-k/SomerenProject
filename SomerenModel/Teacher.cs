@@ -13,6 +13,8 @@ namespace SomerenModel
         public string LastName { get; set; }
         public int RoomNumber { get; set; }
 
+        public bool Lead { get; set; }
+
         public string Name
         {
             get { return $"{FirstName} {LastName}"; }
