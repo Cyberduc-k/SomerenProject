@@ -173,6 +173,7 @@ namespace SomerenUI
                 listViewStock.Items.Clear();
 
                 // fill the teachers listview within the teachers panel with a list of teachers
+                SomerenLogic.Stock_Service stock_Service = new SomerenLogic.Stock_Service();
                 List<Stock> stockList = stock_Service.GetStock();
 
                 foreach (Stock s in stockList)
@@ -181,7 +182,7 @@ namespace SomerenUI
                     List.Tag = s;
                     List.SubItems.Add(s.RegisterID.ToString());
                     List.SubItems.Add(s.Amount.ToString());
-                    
+
                     listViewStock.Items.Add(List);
                 }
             }
@@ -249,35 +250,6 @@ namespace SomerenUI
                 MessageBox.Show("Start date is after end date");
 
                 calendarTerm.SelectionRange.Start = calendarTerm.SelectionRange.End;
-            }
-            else if (panelName == "Stock")
-            {
-                // hide all other panels
-                pnl_Dashboard.Hide();
-                img_Dashboard.Hide();
-                pnl_Students.Hide();
-                pnl_Rooms.Hide();
-                pnl_Teachers.Hide();
-
-                // show Stock
-                pnl_Stock.Show();
-
-                // clear the listview before filling it again
-                listViewStock.Items.Clear();
-
-                // fill the teachers listview within the teachers panel with a list of teachers
-                SomerenLogic.Stock_Service stock_Service = new SomerenLogic.Stock_Service();
-                List<Stock> stockList = stock_Service.GetStock();
-
-                foreach (Stock s in stockList)
-                {
-                    ListViewItem List = new ListViewItem(s.DrinkID.ToString());
-                    List.Tag = s;
-                    List.SubItems.Add(s.RegisterID.ToString());
-                    List.SubItems.Add(s.Amount.ToString());
-                    
-                    listViewStock.Items.Add(List);
-                }
             }
         }
 
