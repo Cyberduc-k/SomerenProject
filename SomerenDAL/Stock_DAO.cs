@@ -58,9 +58,10 @@ namespace SomerenDAL
                     DrinkID = (int)dr["DrankID"],
                     RegisterID = (int)dr["KassaID"],
                     Amount = (int)dr["Aantal"],
-                    Name=(string)dr["Naam"],
-                    Price=(int)dr["Prijs"],
-                    Alcohol=(bool)dr["Alcholistisch"]
+                    Name = (string)dr["Naam"],
+                    Price = (int)dr["Prijs"],
+                    Alcohol = (bool)dr["Alcholistisch"]
+                };
 
                 stocks.Add(stock);
             }

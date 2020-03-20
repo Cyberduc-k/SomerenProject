@@ -181,6 +181,7 @@ namespace SomerenUI
                 {
                     ListViewItem List = new ListViewItem(s.DrinkID.ToString());
                     List.Tag = s;
+                    List.SubItems.Add(s.Name);
                     List.SubItems.Add(s.RegisterID.ToString());
                     List.SubItems.Add(s.Amount.ToString());
                     listViewStock.Items.Add(List);
