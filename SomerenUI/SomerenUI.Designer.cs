@@ -96,6 +96,9 @@ namespace SomerenUI
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btn_Bestelling = new System.Windows.Forms.Button();
+            this.txtbox_Aantal = new System.Windows.Forms.TextBox();
+            this.lbl_Aantal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
@@ -207,10 +210,10 @@ namespace SomerenUI
             // 
             // roomsToolStripMenuItem
             // 
-            this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
-            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
-            this.roomsToolStripMenuItem.Text = "Rooms";
-            this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
+            this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
+            this.studentsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.studentsToolStripMenuItem.Text = "Students";
+            this.studentsToolStripMenuItem.Click += new System.EventHandler(this.studentsToolStripMenuItem_Click);
             // 
             // stockToolStripMenuItem
             // 
@@ -218,6 +221,20 @@ namespace SomerenUI
             this.stockToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.stockToolStripMenuItem.Text = "Stock";
             this.stockToolStripMenuItem.Click += new System.EventHandler(this.stockToolStripMenuItem_Click);
+            // 
+            // registerToolStripMenuItem
+            // 
+            this.registerToolStripMenuItem.Name = "registerToolStripMenuItem";
+            this.registerToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
+            this.registerToolStripMenuItem.Text = "Register";
+            this.registerToolStripMenuItem.Click += new System.EventHandler(this.registerToolStripMenuItem_Click);
+            // 
+            // roomsToolStripMenuItem
+            // 
+            this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
+            this.roomsToolStripMenuItem.Text = "Rooms";
+            this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
             // registerToolStripMenuItem
             // 
@@ -585,6 +602,9 @@ namespace SomerenUI
             // 
             this.pnl_Register.BackColor = System.Drawing.SystemColors.Control;
             this.pnl_Register.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_Register.Controls.Add(this.lbl_Aantal);
+            this.pnl_Register.Controls.Add(this.txtbox_Aantal);
+            this.pnl_Register.Controls.Add(this.btn_Bestelling);
             this.pnl_Register.Controls.Add(this.listView_Register2);
             this.pnl_Register.Controls.Add(this.pictureBox6);
             this.pnl_Register.Controls.Add(this.lbl_Register);
@@ -645,6 +665,7 @@ namespace SomerenUI
             this.listView_Register.TabIndex = 5;
             this.listView_Register.UseCompatibleStateImageBehavior = false;
             this.listView_Register.View = System.Windows.Forms.View.Details;
+            this.listView_Register.SelectedIndexChanged += new System.EventHandler(this.listView_Register_SelectedIndexChanged);
             // 
             // columnHeader10
             // 
@@ -661,6 +682,32 @@ namespace SomerenUI
             // columnHeader13
             // 
             this.columnHeader13.Text = "Alcoholic";
+            // 
+            // btn_Bestelling
+            // 
+            this.btn_Bestelling.Location = new System.Drawing.Point(572, 308);
+            this.btn_Bestelling.Name = "btn_Bestelling";
+            this.btn_Bestelling.Size = new System.Drawing.Size(189, 42);
+            this.btn_Bestelling.TabIndex = 7;
+            this.btn_Bestelling.Text = "Order";
+            this.btn_Bestelling.UseVisualStyleBackColor = true;
+            this.btn_Bestelling.Click += new System.EventHandler(this.btn_Bestelling_Click);
+            // 
+            // txtbox_Aantal
+            // 
+            this.txtbox_Aantal.Location = new System.Drawing.Point(572, 282);
+            this.txtbox_Aantal.Name = "txtbox_Aantal";
+            this.txtbox_Aantal.Size = new System.Drawing.Size(90, 20);
+            this.txtbox_Aantal.TabIndex = 8;
+            // 
+            // lbl_Aantal
+            // 
+            this.lbl_Aantal.AutoSize = true;
+            this.lbl_Aantal.Location = new System.Drawing.Point(572, 263);
+            this.lbl_Aantal.Name = "lbl_Aantal";
+            this.lbl_Aantal.Size = new System.Drawing.Size(37, 13);
+            this.lbl_Aantal.TabIndex = 9;
+            this.lbl_Aantal.Text = "Aantal";
             // 
             // SomerenUI
             // 
@@ -779,6 +826,9 @@ namespace SomerenUI
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.Button btn_Bestelling;
+        private System.Windows.Forms.Label lbl_Aantal;
+        private System.Windows.Forms.TextBox txtbox_Aantal;
         private System.Windows.Forms.ColumnHeader ch_Date;
         private System.Windows.Forms.ToolStripMenuItem stockToolStripMenuItem;
         private System.Windows.Forms.Panel pnl_Stock;

@@ -132,7 +132,7 @@ namespace SomerenUI
 
                 // clear the listview before filling it again
                 listView_Register.Items.Clear();
-
+                listView_Register2.Items.Clear();
 
                 foreach (Drink t in DrinkList)
                 {
@@ -185,6 +185,58 @@ namespace SomerenUI
 
                     listViewStock.Items.Add(List);
                 }
+
+            }
+            else if (panelName == "Sales")
+            {
+                pnl_Sales.Show();
+                updateSales();
+            }
+        }
+
+        private void updateSales()
+        {
+            validateDates(calendarTerm.SelectionStart, calendarTerm.SelectionEnd);
+
+            List<Order> allOrders = orderService.GetAllInRange(calendarTerm.SelectionStart, calendarTerm.SelectionEnd);
+            List<int> customers = new List<int>();
+            int sold = 0;
+            int total = 0;
+
+            foreach (Order order in allOrders)
+            {
+                sold += order.Number;
+                total += order.Drink.Price * order.Number;
+
+                if (!customers.Contains(order.Student.Id))
+                    customers.Add(order.Student.Id);
+            }
+        }
+        
+        private void validateDates(DateTime start, DateTime end)
+        {
+            DateTime today = DateTime.Today;
+
+            if (start > today)
+            {
+                MessageBox.Show("Invalid start date selected");
+
+                calendarTerm.SelectionStart = today;
+            }
+
+            if (end > today)
+            {
+                MessageBox.Show("Invalid end date selected");
+
+                calendarTerm.SelectionStart = today;
+                calendarTerm.SelectionEnd = today;
+            }
+
+            if (start > end)
+            {
+                MessageBox.Show("Start date is after end date");
+
+                calendarTerm.SelectionRange.Start = calendarTerm.SelectionRange.End;
             }
         }
 
@@ -359,6 +411,33 @@ namespace SomerenUI
         private void listView_Register2_SelectedIndexChanged(object sender, EventArgs e)
         {
         
+        }
+        
+        private void btn_Bestelling_Click(object sender, EventArgs e)
+        {
+
+
+            ListViewItem item = listView_Register.SelectedItems[0];
+            Drink Drink = (Drink)item.Tag;
+
+            ListViewItem item2 = listView_Register2.SelectedItems[0];
+            Student Student = (Student)item2.Tag;
+
+            new Order()
+            {
+                Id = orderService.OrderCount(),
+                Drink = Drink,
+                Student = Student,
+                Date = DateTime.Now,
+                Number = int.Parse(txtbox_Aantal.Text)
+            };
+            orderService.Db_Update_Order(orderService.OrderCount() ,Drink ,Student ,DateTime.Now, int.Parse(txtbox_Aantal.Text));
+            MessageBox.Show("Order Placed");
+            txtbox_Aantal.Text = "1";
+        }
+
+        private void listView_Register_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }
