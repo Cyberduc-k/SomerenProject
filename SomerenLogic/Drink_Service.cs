@@ -12,10 +12,14 @@ namespace SomerenLogic
         {
 
 
-            return room_db.Db_Get_All_Drinks(); 
-            
+            return room_db.Db_Get_All_Drinks();
+
 
         }
+       
+ 
+
     }
-    
 }
+    
+

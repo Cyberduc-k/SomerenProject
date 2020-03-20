@@ -130,6 +130,7 @@ namespace SomerenUI
 
                 // clear the listview before filling it again
                 listView_Register.Items.Clear();
+                listView_Register2.Items.Clear();
 
 
                 foreach (Drink t in DrinkList)
@@ -311,6 +312,33 @@ namespace SomerenUI
         private void listView_Register2_SelectedIndexChanged(object sender, EventArgs e)
         {
         
+        }
+
+        private void btn_Bestelling_Click(object sender, EventArgs e)
+        {
+
+
+            ListViewItem item = listView_Register.SelectedItems[0];
+            Drink Drink = (Drink)item.Tag;
+
+            ListViewItem item2 = listView_Register2.SelectedItems[0];
+            Student Student = (Student)item2.Tag;
+
+            new Order()
+            {
+                Id = orderService.OrderCount(),
+                Drink = Drink,
+                Student = Student,
+                Date = DateTime.Now,
+                Number = int.Parse(txtbox_Aantal.Text)
+            };
+            orderService.Db_Update_Order(orderService.OrderCount() ,Drink ,Student ,DateTime.Now, int.Parse(txtbox_Aantal.Text));
+            MessageBox.Show("Order Placed");
+            txtbox_Aantal.Text = "1";
+        }
+
+        private void listView_Register_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }
