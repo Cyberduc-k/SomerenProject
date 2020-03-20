@@ -15,11 +15,7 @@ namespace SomerenLogic
 
         public List<Stock> GetStock()
         {
-
-
             return stock_db.Db_Get_All_Stocks();
-
-
         }
 
         public void Update_Stock(int DrankID, int Amount)

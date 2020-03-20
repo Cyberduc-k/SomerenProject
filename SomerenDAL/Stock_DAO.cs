@@ -14,7 +14,6 @@ namespace SomerenDAL
             //To select collums from the 'Voorrad' and 'Drankje' table, with this it's possible to show the needed information. Also we can filter out free drinks and drinks that are no longer in stock
             string query = "SELECT V.DrankID, V.KassaID, V.Aantal, D.Naam, D.Alcholistisch, D.Prijs FROM Voorraad as V join Drankje as D on D.DrankID = V.DrankID where v.Aantal > 1 AND d.Prijs > 1";
 
-
             SqlParameter[] sqlParameters = new SqlParameter[0];
 
             return ReadStock(ExecuteSelectQuery(query, sqlParameters));
@@ -48,9 +47,6 @@ namespace SomerenDAL
             
         }
 
-
-
-
         private List<Stock> ReadStock(DataTable dataTable)
         {
             List<Stock> stocks = new List<Stock>();
@@ -65,14 +61,11 @@ namespace SomerenDAL
                     Name=(string)dr["Naam"],
                     Price=(int)dr["Prijs"],
                     Alcohol=(bool)dr["Alcholistisch"]
-                    
-
-                };
 
                 stocks.Add(stock);
             }
+            
             return stocks;
         }
-
     }
 }

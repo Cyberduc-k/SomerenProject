@@ -8,16 +8,12 @@ namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
-
-
-
         private SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
         private SomerenLogic.Teacher_Service teacher_Service = new SomerenLogic.Teacher_Service();
         private SomerenLogic.Room_Service room_Service = new SomerenLogic.Room_Service();
         private SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
         private SomerenLogic.Drink_Service Drink_Service = new SomerenLogic.Drink_Service();
         private SomerenLogic.Stock_Service stock_Service = new SomerenLogic.Stock_Service();
-
 
         public SomerenUI()
         {
@@ -33,9 +29,6 @@ namespace SomerenUI
         {
             showPanel("Dashboard");
         }
-
-
-     
 
         private void hideAllPanels()
         {
@@ -141,7 +134,7 @@ namespace SomerenUI
 
                 // clear the listview before filling it again
                 listView_Register.Items.Clear();
-
+                listView_Register2.Items.Clear();
 
                 foreach (Drink t in DrinkList)
                 {
@@ -190,9 +183,14 @@ namespace SomerenUI
                     List.Tag = s;
                     List.SubItems.Add(s.RegisterID.ToString());
                     List.SubItems.Add(s.Amount.ToString());
-                    
                     listViewStock.Items.Add(List);
                 }
+
+            }
+            else if (panelName == "Sales")
+            {
+                pnl_Sales.Show();
+                updateSales();
             }
         }
 
@@ -259,10 +257,6 @@ namespace SomerenUI
 
                 calendarTerm.SelectionRange.Start = calendarTerm.SelectionRange.End;
             }
-            
-                
-
-            
         }
 
         //this button enables you to update the stock 
@@ -378,9 +372,6 @@ namespace SomerenUI
             showPanel("Stock");
         }
 
-
-        
-
         private void lblRegisterID_Click(object sender, EventArgs e)
         {
 
@@ -410,9 +401,6 @@ namespace SomerenUI
         {
 
         }
-
-      
-
         
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -433,6 +421,32 @@ namespace SomerenUI
         {
         
         }
+        
+        private void btn_Bestelling_Click(object sender, EventArgs e)
+        {
 
+
+            ListViewItem item = listView_Register.SelectedItems[0];
+            Drink Drink = (Drink)item.Tag;
+
+            ListViewItem item2 = listView_Register2.SelectedItems[0];
+            Student Student = (Student)item2.Tag;
+
+            new Order()
+            {
+                Id = orderService.OrderCount(),
+                Drink = Drink,
+                Student = Student,
+                Date = DateTime.Now,
+                Number = int.Parse(txtbox_Aantal.Text)
+            };
+            orderService.Db_Update_Order(orderService.OrderCount() ,Drink ,Student ,DateTime.Now, int.Parse(txtbox_Aantal.Text));
+            MessageBox.Show("Order Placed");
+            txtbox_Aantal.Text = "1";
+        }
+
+        private void listView_Register_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
     }
 }
