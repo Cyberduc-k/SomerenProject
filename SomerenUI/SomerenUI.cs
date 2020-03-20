@@ -1,6 +1,7 @@
 ﻿using SomerenModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SomerenUI
@@ -12,6 +13,7 @@ namespace SomerenUI
         private SomerenLogic.Room_Service room_Service = new SomerenLogic.Room_Service();
         private SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
         private SomerenLogic.Drink_Service Drink_Service = new SomerenLogic.Drink_Service();
+        private SomerenLogic.Stock_Service stock_Service = new SomerenLogic.Stock_Service();
 
         public SomerenUI()
         {
@@ -36,6 +38,7 @@ namespace SomerenUI
             pnl_Rooms.Hide();
             pnl_Sales.Hide();
             pnl_Register.Hide();
+            pnl_Stock.Hide();
         }
 
         private void showPanel(string panelName)
@@ -48,7 +51,7 @@ namespace SomerenUI
                 pnl_Dashboard.Show();
                 img_Dashboard.Show();
             }
-            else if(panelName == "Students")
+            else if (panelName == "Students")
             {
                 // show students
                 pnl_Students.Show();
@@ -81,7 +84,7 @@ namespace SomerenUI
 
                 // fill the teachers listview within the teachers panel with a list of teachers
                 List<Teacher> teacherList = teacher_Service.GetTeacher();
-               
+
                 foreach (Teacher t in teacherList)
                 {
                     ListViewItem List = new ListViewItem(t.Id.ToString());
@@ -89,8 +92,9 @@ namespace SomerenUI
                     List.SubItems.Add(t.FirstName);
                     List.SubItems.Add(t.LastName);
                     List.SubItems.Add(t.RoomNumber.ToString());
+                    List.SubItems.Add(t.Lead.ToString());
                     listViewTeachers.Items.Add(List);
-                }         
+                }
             }
             else if (panelName == "Rooms")
             {
@@ -124,14 +128,11 @@ namespace SomerenUI
 
                 // fill the rooms listview within the rooms panel with a list of rooms
                 List<Drink> DrinkList = Drink_Service.GetDrink();
-
-                SomerenLogic.Student_Service student_Service = new SomerenLogic.Student_Service();
-                List<Student> StudentList = student_Service.GetStudents();
+                List<Student> StudentList = studService.GetStudents();
 
                 // clear the listview before filling it again
                 listView_Register.Items.Clear();
                 listView_Register2.Items.Clear();
-
 
                 foreach (Drink t in DrinkList)
                 {
@@ -155,6 +156,34 @@ namespace SomerenUI
                     li.SubItems.Add(t.LastName.ToString());
 
                     listView_Register2.Items.Add(li);
+                }
+
+            }
+            else if (panelName == "Sales")
+            {
+                pnl_Sales.Show();
+                updateSales();
+            }
+            else if (panelName == "Stock")
+            {
+                // show Stock
+                pnl_Stock.Show();
+
+                // clear the listview before filling it again
+                listViewStock.Items.Clear();
+
+                // fill the teachers listview within the teachers panel with a list of teachers
+                SomerenLogic.Stock_Service stock_Service = new SomerenLogic.Stock_Service();
+                List<Stock> stockList = stock_Service.GetStock();
+
+                foreach (Stock s in stockList)
+                {
+                    ListViewItem List = new ListViewItem(s.DrinkID.ToString());
+                    List.Tag = s;
+                    List.SubItems.Add(s.RegisterID.ToString());
+                    List.SubItems.Add(s.Amount.ToString());
+
+                    listViewStock.Items.Add(List);
                 }
 
             }
@@ -200,6 +229,71 @@ namespace SomerenUI
                 MessageBox.Show("Invalid end date selected");
 
                 calendarTerm.SelectionStart = today;
+                calendarTerm.SelectionEnd = today;
+            }
+
+            if (start > end)
+            {
+                MessageBox.Show("Start date is after end date");
+
+                calendarTerm.SelectionRange.Start = calendarTerm.SelectionRange.End;
+            }
+        }
+
+        private void updateSales()
+        {
+            validateDates(calendarTerm.SelectionStart.Date, calendarTerm.SelectionEnd.Date);
+
+            lbl_Term.Text = $"Term: {calendarTerm.SelectionStart.Date.ToString("dd-MM-yyyy")} - {calendarTerm.SelectionEnd.Date.ToString("dd-MM-yyyy")}";
+
+            List<Order> allOrders = orderService.GetAllInRange(calendarTerm.SelectionStart, calendarTerm.SelectionEnd);
+            Dictionary<DateTime, List<Order>> ordersByDate = allOrders
+                .GroupBy(order => order.Date.Date)
+                .ToDictionary(kv => kv.Key, kv => kv.ToList());
+
+            lv_Sales.Items.Clear();
+
+            foreach (KeyValuePair<DateTime, List<Order>> pair in ordersByDate)
+            {
+                List<Order> orders = pair.Value;
+                List<int> customers = new List<int>();
+                int sold = 0;
+                int total = 0;
+
+                foreach (Order order in orders)
+                {
+                    sold += order.Number;
+                    total += order.Drink.Price * order.Number;
+
+                    if (!customers.Contains(order.Student.Id))
+                        customers.Add(order.Student.Id);
+                }
+
+                ListViewItem li = new ListViewItem(pair.Key.ToString("dd-MM-yyyy"));
+
+                li.SubItems.Add(sold.ToString());
+                li.SubItems.Add(total.ToString());
+                li.SubItems.Add(customers.Count.ToString());
+
+                lv_Sales.Items.Add(li);
+            }
+        }
+        
+        private void validateDates(DateTime start, DateTime end)
+        {
+            DateTime today = DateTime.Today.Date;
+
+            if (start > today)
+            {
+                MessageBox.Show("Invalid start date selected");
+
+                calendarTerm.SelectionStart = today;
+            }
+
+            if (end > today)
+            {
+                MessageBox.Show("Invalid end date selected");
+
                 calendarTerm.SelectionEnd = today;
             }
 
@@ -294,6 +388,11 @@ namespace SomerenUI
 
         }
 
+        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Stock");
+        }
+        
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Sales");
@@ -313,7 +412,7 @@ namespace SomerenUI
         {
         
         }
-
+        
         private void btn_Bestelling_Click(object sender, EventArgs e)
         {
 

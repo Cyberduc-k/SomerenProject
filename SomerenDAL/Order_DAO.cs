@@ -71,6 +71,7 @@ namespace SomerenDAL
 
             return orders;
         }
+        
         public int OrderCount()
         {
             string query = "SELECT MAX(BestellingID) AS [Count] FROM [Bestellingen]";
@@ -79,18 +80,13 @@ namespace SomerenDAL
 
             return (int)dataTable.Rows[0]["Count"];
         }
+        
         public void Db_Update_Order(int Id, Drink Drink,Student Student, DateTime Date, int Number)
         {
             string update = $"INSERT INTO[Bestellingen] (BestellingID, Aantal, DrankID, StudentID, KassaID, Datum) VALUES({Id + 1},{Number},{Drink.Id},{Student.Id},0,convert(datetime,'{Date.ToString("yyyy-MM-ddThh:mm:ss")}'))";
             SqlParameter[] sqlParameters = new SqlParameter[0];
+            
             ExecuteEditQuery(update, sqlParameters);
-
         }
-
-
-
-
-
     }
- 
 }

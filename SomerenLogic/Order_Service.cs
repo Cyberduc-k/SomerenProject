@@ -38,7 +38,6 @@ namespace SomerenLogic
 
             return total;
         }
-
         public int OrderCount()
         {
             return orderDao.OrderCount();
@@ -48,6 +47,5 @@ namespace SomerenLogic
         {
             orderDao.Db_Update_Order( Id,  Drink,  Student,  Date, Number);
         }
-
     }
 }
