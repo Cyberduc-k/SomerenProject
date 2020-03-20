@@ -10,7 +10,7 @@ namespace SomerenLogic
         
         public List<Drink> GetDrink()
         {
-            return room_db.Db_Get_All_Drinks();
+            return room_db.Db_Get_All_Drinks(); 
         }
     }
 }

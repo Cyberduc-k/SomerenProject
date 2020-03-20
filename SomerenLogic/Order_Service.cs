@@ -38,6 +38,7 @@ namespace SomerenLogic
 
             return total;
         }
+      
         public int OrderCount()
         {
             return orderDao.OrderCount();

@@ -22,6 +22,7 @@ namespace SomerenUI
             listViewStudents.ListViewItemSorter = new StudentsListComparer(0);
             listViewTeachers.ListViewItemSorter = new TeachersListComparer(0);
             ListViewRooms.ListViewItemSorter = new RoomsListComparer(0);
+
         }
 
         private void SomerenUI_Load(object sender, EventArgs e)
@@ -42,6 +43,7 @@ namespace SomerenUI
         }
 
         private void showPanel(string panelName)
+
         {
             hideAllPanels();
 
@@ -173,7 +175,6 @@ namespace SomerenUI
                 listViewStock.Items.Clear();
 
                 // fill the teachers listview within the teachers panel with a list of teachers
-                SomerenLogic.Stock_Service stock_Service = new SomerenLogic.Stock_Service();
                 List<Stock> stockList = stock_Service.GetStock();
 
                 foreach (Stock s in stockList)
@@ -182,7 +183,6 @@ namespace SomerenUI
                     List.Tag = s;
                     List.SubItems.Add(s.RegisterID.ToString());
                     List.SubItems.Add(s.Amount.ToString());
-
                     listViewStock.Items.Add(List);
                 }
 
@@ -191,52 +191,6 @@ namespace SomerenUI
             {
                 pnl_Sales.Show();
                 updateSales();
-            }
-        }
-
-        private void updateSales()
-        {
-            validateDates(calendarTerm.SelectionStart, calendarTerm.SelectionEnd);
-
-            List<Order> allOrders = orderService.GetAllInRange(calendarTerm.SelectionStart, calendarTerm.SelectionEnd);
-            List<int> customers = new List<int>();
-            int sold = 0;
-            int total = 0;
-
-            foreach (Order order in allOrders)
-            {
-                sold += order.Number;
-                total += order.Drink.Price * order.Number;
-
-                if (!customers.Contains(order.Student.Id))
-                    customers.Add(order.Student.Id);
-            }
-        }
-        
-        private void validateDates(DateTime start, DateTime end)
-        {
-            DateTime today = DateTime.Today;
-
-            if (start > today)
-            {
-                MessageBox.Show("Invalid start date selected");
-
-                calendarTerm.SelectionStart = today;
-            }
-
-            if (end > today)
-            {
-                MessageBox.Show("Invalid end date selected");
-
-                calendarTerm.SelectionStart = today;
-                calendarTerm.SelectionEnd = today;
-            }
-
-            if (start > end)
-            {
-                MessageBox.Show("Start date is after end date");
-
-                calendarTerm.SelectionRange.Start = calendarTerm.SelectionRange.End;
             }
         }
 
@@ -305,6 +259,31 @@ namespace SomerenUI
             }
         }
 
+        //this button enables you to update the stock 
+        public void btnUpdate_Click(object sender, EventArgs e)
+        {
+            
+            int DrankID = int.Parse(txtBoxDrinkID.Text);
+            int Amount = int.Parse(txtBoxAmount.Text);
+            string Name = txtBoxName.Text;
+           
+            stock_Service.Update_Stock(DrankID, Amount);
+            stock_Service.Update_Name(DrankID, Name);
+            listViewStock.Items.Clear();
+            showPanel("Stock");
+
+        }
+        public void btnAddToStock_Click(object sender, EventArgs e)
+        {
+            int DrankID = int.Parse(txtBoxDrinkID.Text);
+            int Amount = int.Parse(txtBoxAmount.Text);
+            int Price = int.Parse(txtBoxPrice.Text);
+            string Name = txtBoxName.Text;
+            //int RegisterID = '0';
+            stock_Service.Add_To_Stock(DrankID, Name, Price,Amount,false);
+            listViewStock.Items.Clear();
+            showPanel("Stock");
+        }
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
            //
@@ -391,6 +370,36 @@ namespace SomerenUI
         private void stockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Stock");
+        }
+
+        private void lblRegisterID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblDrinkID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxAmount_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxRegisterID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxDrinkID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblAmount_Click(object sender, EventArgs e)
+        {
+
         }
         
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)

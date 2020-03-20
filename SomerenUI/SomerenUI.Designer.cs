@@ -57,25 +57,39 @@ namespace SomerenUI
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lbl_Teachers = new System.Windows.Forms.Label();
             this.listViewTeachers = new System.Windows.Forms.ListView();
-            this.TeacherID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeacherFirstName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeacherLastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeacherRoomNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TeacherID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeacherLead = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnl_Stock = new System.Windows.Forms.Panel();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.lblName = new System.Windows.Forms.Label();
+            this.txtBoxName = new System.Windows.Forms.TextBox();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.txtBoxPrice = new System.Windows.Forms.TextBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.lblStock = new System.Windows.Forms.Label();
+            this.lblDrinkID = new System.Windows.Forms.Label();
+            this.txtBoxAmount = new System.Windows.Forms.TextBox();
+            this.txtBoxDrinkID = new System.Windows.Forms.TextBox();
+            this.btnAddToStock = new System.Windows.Forms.Button();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.lbl_Stock = new System.Windows.Forms.Label();
             this.listViewStock = new System.Windows.Forms.ListView();
             this.DrinkID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.RegisterID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DrinkName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Price = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.StockN = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.Amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pnl_Rooms = new System.Windows.Forms.Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lbl_Rooms = new System.Windows.Forms.Label();
             this.ListViewRooms = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RegisterID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Amount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnl_Sales = new System.Windows.Forms.Panel();
             this.lv_Sales = new System.Windows.Forms.ListView();
             this.ch_Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -117,9 +131,10 @@ namespace SomerenUI
             // 
             // img_Dashboard
             // 
-            this.img_Dashboard.Location = new System.Drawing.Point(627, 0);
+            this.img_Dashboard.Location = new System.Drawing.Point(836, 0);
+            this.img_Dashboard.Margin = new System.Windows.Forms.Padding(4);
             this.img_Dashboard.Name = "img_Dashboard";
-            this.img_Dashboard.Size = new System.Drawing.Size(311, 270);
+            this.img_Dashboard.Size = new System.Drawing.Size(415, 332);
             this.img_Dashboard.TabIndex = 0;
             this.img_Dashboard.TabStop = false;
             this.img_Dashboard.Click += new System.EventHandler(this.img_Dashboard_Click);
@@ -138,8 +153,8 @@ namespace SomerenUI
             this.registerToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(980, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1420, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -150,26 +165,26 @@ namespace SomerenUI
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(100, 24);
             this.dashboardToolStripMenuItem.Text = "Application";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
             // dashboardToolStripMenuItem1
             // 
             this.dashboardToolStripMenuItem1.Name = "dashboardToolStripMenuItem1";
-            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(131, 22);
+            this.dashboardToolStripMenuItem1.Size = new System.Drawing.Size(165, 26);
             this.dashboardToolStripMenuItem1.Text = "Dashboard";
             this.dashboardToolStripMenuItem1.Click += new System.EventHandler(this.dashboardToolStripMenuItem1_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(128, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -193,14 +208,24 @@ namespace SomerenUI
             this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
             this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.activitiesToolStripMenuItem.Text = "Activities";
+
+            this.barToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salesToolStripMenuItem});
+            this.barToolStripMenuItem.Name = "barToolStripMenuItem";
+            this.barToolStripMenuItem.Size = new System.Drawing.Size(36, 20);
+            this.barToolStripMenuItem.Text = "Bar";
+
             // 
-            // studentsToolStripMenuItem
+            // salesToolStripMenuItem
             // 
-            this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
-            this.studentsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.studentsToolStripMenuItem.Text = "Students";
-            this.studentsToolStripMenuItem.Click += new System.EventHandler(this.studentsToolStripMenuItem_Click);
-            // 
+
+            
+
+            this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.salesToolStripMenuItem.Text = "Sales";
+            this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click);
+
             // teacherToolStripMenuItem
             // 
             this.teacherToolStripMenuItem.Name = "teacherToolStripMenuItem";
@@ -210,6 +235,9 @@ namespace SomerenUI
             // 
             // roomsToolStripMenuItem
             // 
+            this.activitiesToolStripMenuItem.Name = "activitiesToolStripMenuItem";
+            this.activitiesToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
+            this.activitiesToolStripMenuItem.Text = "Activities";
             this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
             this.studentsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.studentsToolStripMenuItem.Text = "Students";
@@ -229,6 +257,19 @@ namespace SomerenUI
             this.registerToolStripMenuItem.Text = "Register";
             this.registerToolStripMenuItem.Click += new System.EventHandler(this.registerToolStripMenuItem_Click);
             // 
+            // studentsToolStripMenuItem
+            // 
+
+            this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
+            this.roomsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
+            this.roomsToolStripMenuItem.Text = "Rooms";
+            this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
+
+            this.studentsToolStripMenuItem.Name = "studentsToolStripMenuItem";
+            this.studentsToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.studentsToolStripMenuItem.Text = "Students";
+            this.studentsToolStripMenuItem.Click += new System.EventHandler(this.studentsToolStripMenuItem_Click);
+            // 
             // roomsToolStripMenuItem
             // 
             this.roomsToolStripMenuItem.Name = "roomsToolStripMenuItem";
@@ -236,29 +277,25 @@ namespace SomerenUI
             this.roomsToolStripMenuItem.Text = "Rooms";
             this.roomsToolStripMenuItem.Click += new System.EventHandler(this.roomsToolStripMenuItem_Click);
             // 
-            // registerToolStripMenuItem
-            // 
-            this.registerToolStripMenuItem.Name = "registerToolStripMenuItem";
-            this.registerToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
-            this.registerToolStripMenuItem.Text = "Register";
-            this.registerToolStripMenuItem.Click += new System.EventHandler(this.registerToolStripMenuItem_Click);
-            // 
             // pnl_Dashboard
             // 
             this.pnl_Dashboard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnl_Dashboard.Controls.Add(this.lbl_Dashboard);
             this.pnl_Dashboard.Controls.Add(this.img_Dashboard);
-            this.pnl_Dashboard.Location = new System.Drawing.Point(20, 42);
+            this.pnl_Dashboard.Location = new System.Drawing.Point(76, 170);
+            this.pnl_Dashboard.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_Dashboard.Name = "pnl_Dashboard";
             this.pnl_Dashboard.Size = new System.Drawing.Size(940, 368);
+            this.pnl_Dashboard.Location = new System.Drawing.Point(20, 42);
             this.pnl_Dashboard.TabIndex = 2;
             // 
             // lbl_Dashboard
             // 
             this.lbl_Dashboard.AutoSize = true;
-            this.lbl_Dashboard.Location = new System.Drawing.Point(13, 13);
+            this.lbl_Dashboard.Location = new System.Drawing.Point(17, 16);
+            this.lbl_Dashboard.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Dashboard.Name = "lbl_Dashboard";
-            this.lbl_Dashboard.Size = new System.Drawing.Size(185, 13);
+            this.lbl_Dashboard.Size = new System.Drawing.Size(243, 17);
             this.lbl_Dashboard.TabIndex = 1;
             this.lbl_Dashboard.Text = "Welcome to the Someren Application!";
             // 
@@ -268,6 +305,9 @@ namespace SomerenUI
             this.pnl_Students.Controls.Add(this.listViewStudents);
             this.pnl_Students.Controls.Add(this.pictureBox1);
             this.pnl_Students.Controls.Add(this.lbl_Students);
+            this.pnl_Students.Location = new System.Drawing.Point(49, 119);
+            this.pnl_Students.Margin = new System.Windows.Forms.Padding(4);
+            this.pnl_Students.Name = "pnl_Students";
             this.pnl_Students.Location = new System.Drawing.Point(20, 42);
             this.pnl_Students.Name = "pnl_Students";
             this.pnl_Students.Size = new System.Drawing.Size(940, 368);
@@ -282,10 +322,10 @@ namespace SomerenUI
             this.studentDOB});
             this.listViewStudents.HideSelection = false;
             this.listViewStudents.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.listViewStudents.Location = new System.Drawing.Point(16, 42);
-            this.listViewStudents.Margin = new System.Windows.Forms.Padding(2);
+            this.listViewStudents.Location = new System.Drawing.Point(21, 52);
+            this.listViewStudents.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewStudents.Name = "listViewStudents";
-            this.listViewStudents.Size = new System.Drawing.Size(766, 307);
+            this.listViewStudents.Size = new System.Drawing.Size(1020, 377);
             this.listViewStudents.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.listViewStudents.TabIndex = 5;
             this.listViewStudents.UseCompatibleStateImageBehavior = false;
@@ -315,9 +355,10 @@ namespace SomerenUI
             // 
             this.pictureBox1.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(805, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(1073, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(130, 123);
+            this.pictureBox1.Size = new System.Drawing.Size(173, 151);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -325,9 +366,10 @@ namespace SomerenUI
             // 
             this.lbl_Students.AutoSize = true;
             this.lbl_Students.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Students.Location = new System.Drawing.Point(10, 10);
+            this.lbl_Students.Location = new System.Drawing.Point(13, 12);
+            this.lbl_Students.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Students.Name = "lbl_Students";
-            this.lbl_Students.Size = new System.Drawing.Size(107, 29);
+            this.lbl_Students.Size = new System.Drawing.Size(129, 33);
             this.lbl_Students.TabIndex = 3;
             this.lbl_Students.Text = "Students";
             // 
@@ -346,9 +388,10 @@ namespace SomerenUI
             // 
             this.pictureBox2.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox2.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.InitialImage")));
-            this.pictureBox2.Location = new System.Drawing.Point(805, 0);
+            this.pictureBox2.Location = new System.Drawing.Point(1073, 0);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(130, 123);
+            this.pictureBox2.Size = new System.Drawing.Size(173, 151);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
@@ -356,9 +399,10 @@ namespace SomerenUI
             // 
             this.lbl_Teachers.AutoSize = true;
             this.lbl_Teachers.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Teachers.Location = new System.Drawing.Point(10, 10);
+            this.lbl_Teachers.Location = new System.Drawing.Point(13, 12);
+            this.lbl_Teachers.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Teachers.Name = "lbl_Teachers";
-            this.lbl_Teachers.Size = new System.Drawing.Size(115, 29);
+            this.lbl_Teachers.Size = new System.Drawing.Size(137, 33);
             this.lbl_Teachers.TabIndex = 3;
             this.lbl_Teachers.Text = "Teachers";
             // 
@@ -371,33 +415,38 @@ namespace SomerenUI
             this.TeacherRoomNumber,
             this.TeacherLead});
             this.listViewTeachers.HideSelection = false;
-            this.listViewTeachers.Location = new System.Drawing.Point(16, 42);
+            this.listViewTeachers.Location = new System.Drawing.Point(21, 52);
+            this.listViewTeachers.Margin = new System.Windows.Forms.Padding(4);
             this.listViewTeachers.Name = "listViewTeachers";
-            this.listViewTeachers.Size = new System.Drawing.Size(766, 307);
+            this.listViewTeachers.Size = new System.Drawing.Size(1020, 377);
             this.listViewTeachers.TabIndex = 5;
             this.listViewTeachers.UseCompatibleStateImageBehavior = false;
             this.listViewTeachers.View = System.Windows.Forms.View.Details;
             this.listViewTeachers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewTeachers_ColumnClick);
             this.listViewTeachers.SelectedIndexChanged += new System.EventHandler(this.listViewTeachers_SelectedIndexChanged);
             // 
-            // TeacherID
-            // 
-            this.TeacherID.Text = "ID";
-            // 
             // TeacherFirstName
             // 
+            this.TeacherFirstName.DisplayIndex = 1;
             this.TeacherFirstName.Text = "First Name";
             this.TeacherFirstName.Width = 117;
             // 
             // TeacherLastName
             // 
+            this.TeacherLastName.DisplayIndex = 2;
             this.TeacherLastName.Text = "Last Name";
             this.TeacherLastName.Width = 105;
             // 
             // TeacherRoomNumber
             // 
+            this.TeacherRoomNumber.DisplayIndex = 3;
             this.TeacherRoomNumber.Text = "Room Number";
             this.TeacherRoomNumber.Width = 132;
+            // 
+            // TeacherID
+            // 
+            this.TeacherID.DisplayIndex = 0;
+            this.TeacherID.Text = "ID";
             // 
             // TeacherLead
             // 
@@ -406,6 +455,135 @@ namespace SomerenUI
             // pnl_Stock
             // 
             this.pnl_Stock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_Stock.Controls.Add(this.lblName);
+            this.pnl_Stock.Controls.Add(this.txtBoxName);
+            this.pnl_Stock.Controls.Add(this.lblPrice);
+            this.pnl_Stock.Controls.Add(this.txtBoxPrice);
+            this.pnl_Stock.Controls.Add(this.btnUpdate);
+            this.pnl_Stock.Controls.Add(this.lblStock);
+            this.pnl_Stock.Controls.Add(this.lblDrinkID);
+            this.pnl_Stock.Controls.Add(this.txtBoxAmount);
+            this.pnl_Stock.Controls.Add(this.txtBoxDrinkID);
+            this.pnl_Stock.Controls.Add(this.btnAddToStock);
+            this.pnl_Stock.Controls.Add(this.pictureBox6);
+            this.pnl_Stock.Controls.Add(this.lbl_Stock);
+            this.pnl_Stock.Controls.Add(this.listViewStock);
+            this.pnl_Stock.Location = new System.Drawing.Point(49, 119);
+            this.pnl_Stock.Margin = new System.Windows.Forms.Padding(4);
+            this.pnl_Stock.Name = "pnl_Stock";
+            this.pnl_Stock.Size = new System.Drawing.Size(1253, 576);
+            this.pnl_Stock.TabIndex = 10;
+            // 
+
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(531, 175);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(45, 17);
+            this.lblName.TabIndex = 17;
+            this.lblName.Text = "Name";
+            // 
+            // txtBoxName
+            // 
+            this.txtBoxName.Location = new System.Drawing.Point(630, 175);
+            this.txtBoxName.Name = "txtBoxName";
+            this.txtBoxName.Size = new System.Drawing.Size(219, 22);
+            this.txtBoxName.TabIndex = 16;
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Location = new System.Drawing.Point(531, 223);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(40, 17);
+            this.lblPrice.TabIndex = 15;
+            this.lblPrice.Text = "Price";
+            // 
+            // txtBoxPrice
+            // 
+            this.txtBoxPrice.Location = new System.Drawing.Point(630, 223);
+            this.txtBoxPrice.Name = "txtBoxPrice";
+            this.txtBoxPrice.Size = new System.Drawing.Size(219, 22);
+            this.txtBoxPrice.TabIndex = 14;
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(534, 436);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(315, 45);
+            this.btnUpdate.TabIndex = 13;
+            this.btnUpdate.Text = "Update stock";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
+            // lblStock
+            // 
+            this.lblStock.AutoSize = true;
+            this.lblStock.Location = new System.Drawing.Point(531, 269);
+            this.lblStock.Name = "lblStock";
+            this.lblStock.Size = new System.Drawing.Size(54, 21);
+            this.lblStock.TabIndex = 12;
+            this.lblStock.Text = "Stock";
+            this.lblStock.Click += new System.EventHandler(this.lblAmount_Click);
+            // 
+            // lblDrinkID
+            // 
+            this.lblDrinkID.AutoSize = true;
+            this.lblDrinkID.Location = new System.Drawing.Point(531, 59);
+            this.lblDrinkID.Name = "lblDrinkID";
+            this.lblDrinkID.Size = new System.Drawing.Size(54, 17);
+            this.lblDrinkID.TabIndex = 10;
+            this.lblDrinkID.Text = "DrinkID";
+            this.lblDrinkID.Click += new System.EventHandler(this.lblDrinkID_Click);
+            // 
+            // txtBoxAmount
+            // 
+            this.txtBoxAmount.Location = new System.Drawing.Point(630, 266);
+            this.txtBoxAmount.Name = "txtBoxAmount";
+            this.txtBoxAmount.Size = new System.Drawing.Size(219, 22);
+            this.txtBoxAmount.TabIndex = 9;
+            this.txtBoxAmount.TextChanged += new System.EventHandler(this.txtBoxAmount_TextChanged);
+            // 
+            // txtBoxDrinkID
+            // 
+            this.txtBoxDrinkID.Location = new System.Drawing.Point(630, 58);
+            this.txtBoxDrinkID.Name = "txtBoxDrinkID";
+            this.txtBoxDrinkID.Size = new System.Drawing.Size(219, 22);
+            this.txtBoxDrinkID.TabIndex = 7;
+            this.txtBoxDrinkID.TextChanged += new System.EventHandler(this.txtBoxDrinkID_TextChanged);
+            // 
+            // btnAddToStock
+            // 
+            this.btnAddToStock.Location = new System.Drawing.Point(534, 366);
+            this.btnAddToStock.Name = "btnAddToStock";
+            this.btnAddToStock.Size = new System.Drawing.Size(315, 45);
+            this.btnAddToStock.TabIndex = 6;
+            this.btnAddToStock.Text = "Add to stock";
+            this.btnAddToStock.UseVisualStyleBackColor = true;
+            this.btnAddToStock.Click += new System.EventHandler(this.btnAddToStock_Click);
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = global::SomerenUI.Properties.Resources.someren;
+            this.pictureBox6.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.InitialImage")));
+            this.pictureBox6.Location = new System.Drawing.Point(1073, 0);
+            this.pictureBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(173, 151);
+            this.pictureBox6.TabIndex = 0;
+            this.pictureBox6.TabStop = false;
+
+            // pictureBox7
+            // 
+           // this.pictureBox7.Image = global::SomerenUI.Properties.Resources.someren;
+           // this.pictureBox7.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.InitialImage")));
+           // this.pictureBox7.Location = new System.Drawing.Point(805, 0);
+          //  this.pictureBox7.Name = "pictureBox7";
+          //  this.pictureBox7.Size = new System.Drawing.Size(130, 123);
+            //this.pictureBox7.TabIndex = 0;
+           // this.pictureBox7.TabStop = false;
+
             this.pnl_Stock.Controls.Add(this.pictureBox7);
             this.pnl_Stock.Controls.Add(this.lbl_Stock);
             this.pnl_Stock.Controls.Add(this.listViewStock);
@@ -438,8 +616,9 @@ namespace SomerenUI
             // 
             this.listViewStock.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.DrinkID,
-            this.RegisterID,
-            this.Amount});
+            this.DrinkName,
+            this.Price,
+            this.StockN});
             this.listViewStock.HideSelection = false;
             this.listViewStock.Location = new System.Drawing.Point(16, 42);
             this.listViewStock.Name = "listViewStock";
@@ -452,6 +631,19 @@ namespace SomerenUI
             // 
             this.DrinkID.Text = "DrinkID";
             // 
+            // DrinkName
+            // 
+            this.DrinkName.Text = "Name";
+            // 
+            // Price
+            // 
+            this.Price.Text = "Price in Coin(s)";
+            this.Price.Width = 104;
+            // 
+            // StockN
+            // 
+            this.StockN.Text = "Stock";
+            this.StockN.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // RegisterID
             // 
             this.RegisterID.Text = "Register ID";
@@ -478,7 +670,8 @@ namespace SomerenUI
             this.pnl_Rooms.Controls.Add(this.pictureBox3);
             this.pnl_Rooms.Controls.Add(this.lbl_Rooms);
             this.pnl_Rooms.Controls.Add(this.ListViewRooms);
-            this.pnl_Rooms.Location = new System.Drawing.Point(20, 42);
+            this.pnl_Rooms.Location = new System.Drawing.Point(76, 171);
+            this.pnl_Rooms.Margin = new System.Windows.Forms.Padding(4);
             this.pnl_Rooms.Name = "pnl_Rooms";
             this.pnl_Rooms.Size = new System.Drawing.Size(940, 368);
             this.pnl_Rooms.TabIndex = 9;
@@ -487,9 +680,10 @@ namespace SomerenUI
             // 
             this.pictureBox3.Image = global::SomerenUI.Properties.Resources.someren;
             this.pictureBox3.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.InitialImage")));
-            this.pictureBox3.Location = new System.Drawing.Point(805, 0);
+            this.pictureBox3.Location = new System.Drawing.Point(1073, 0);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(130, 123);
+            this.pictureBox3.Size = new System.Drawing.Size(173, 151);
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
             // 
@@ -497,9 +691,10 @@ namespace SomerenUI
             // 
             this.lbl_Rooms.AutoSize = true;
             this.lbl_Rooms.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Rooms.Location = new System.Drawing.Point(10, 10);
+            this.lbl_Rooms.Location = new System.Drawing.Point(13, 12);
+            this.lbl_Rooms.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_Rooms.Name = "lbl_Rooms";
-            this.lbl_Rooms.Size = new System.Drawing.Size(90, 29);
+            this.lbl_Rooms.Size = new System.Drawing.Size(108, 33);
             this.lbl_Rooms.TabIndex = 3;
             this.lbl_Rooms.Text = "Rooms";
             // 
@@ -509,9 +704,10 @@ namespace SomerenUI
             this.columnHeader1,
             this.columnHeader5});
             this.ListViewRooms.HideSelection = false;
-            this.ListViewRooms.Location = new System.Drawing.Point(16, 42);
+            this.ListViewRooms.Location = new System.Drawing.Point(21, 52);
+            this.ListViewRooms.Margin = new System.Windows.Forms.Padding(4);
             this.ListViewRooms.Name = "ListViewRooms";
-            this.ListViewRooms.Size = new System.Drawing.Size(766, 307);
+            this.ListViewRooms.Size = new System.Drawing.Size(1020, 377);
             this.ListViewRooms.TabIndex = 5;
             this.ListViewRooms.UseCompatibleStateImageBehavior = false;
             this.ListViewRooms.View = System.Windows.Forms.View.Details;
@@ -525,6 +721,14 @@ namespace SomerenUI
             // 
             this.columnHeader5.Text = "Capicity";
             // 
+            // RegisterID
+            // 
+            this.RegisterID.Text = "Register ID";
+            this.RegisterID.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // Amount
+            // 
+            this.Amount.Text = "Amount";
             // pnl_Sales
             // 
             this.pnl_Sales.BackColor = System.Drawing.SystemColors.Control;
@@ -683,6 +887,11 @@ namespace SomerenUI
             // 
             this.columnHeader13.Text = "Alcoholic";
             // 
+            // ch_Date
+            // 
+            this.ch_Date.Text = "Date";
+            this.ch_Date.Width = 120;
+            // 
             // btn_Bestelling
             // 
             this.btn_Bestelling.Location = new System.Drawing.Point(572, 308);
@@ -711,8 +920,18 @@ namespace SomerenUI
             // 
             // SomerenUI
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1420, 874);
+            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pnl_Stock);
+
+            this.Controls.Add(this.pnl_Stock);
+            this.ClientSize = new System.Drawing.Size(980, 429);
+            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pnl_Sales);
+            this.Controls.Add(this.pnl_Rooms);
+            this.Controls.Add(this.pnl_Register);
             this.ClientSize = new System.Drawing.Size(980, 429);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pnl_Stock);
@@ -724,6 +943,7 @@ namespace SomerenUI
             this.Controls.Add(this.pnl_Dashboard);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SomerenUI";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.Text = "SomerenApp";
@@ -752,11 +972,9 @@ namespace SomerenUI
             this.pnl_Register.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
-
         private System.Windows.Forms.PictureBox img_Dashboard;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem;
@@ -836,6 +1054,20 @@ namespace SomerenUI
         private System.Windows.Forms.Label lbl_Stock;
         private System.Windows.Forms.ListView listViewStock;
         private System.Windows.Forms.ColumnHeader DrinkID;
+        private System.Windows.Forms.ColumnHeader StockN;
+        private System.Windows.Forms.ColumnHeader DrinkName;
+        private System.Windows.Forms.Label lblStock;
+        private System.Windows.Forms.Label lblDrinkID;
+        private System.Windows.Forms.TextBox txtBoxAmount;
+        private System.Windows.Forms.TextBox txtBoxDrinkID;
+        private System.Windows.Forms.Button btnAddToStock;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.ColumnHeader Price;
+        private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.TextBox txtBoxName;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.TextBox txtBoxPrice;
+
         private System.Windows.Forms.ColumnHeader RegisterID;
         private System.Windows.Forms.ColumnHeader Amount;
     }
