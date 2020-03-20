@@ -11,30 +11,30 @@ namespace SomerenDAL
     {
         public List<Stock> Db_Get_All_Stocks()
         {
-            string query = "SELECT StudentID, Voornaam, Achternaam, GeboorteDatum FROM [Voorraad]";
+            string query = "SELECT DrankID, KassaID, Aantal FROM [Voorraad]";
             SqlParameter[] sqlParameters = new SqlParameter[0];
 
-            return ReadStudent(ExecuteSelectQuery(query, sqlParameters));
+            return ReadStock(ExecuteSelectQuery(query, sqlParameters));
         }
 
-        private List<Stock> ReadStudent(DataTable dataTable)
+        private List<Stock> ReadStock(DataTable dataTable)
         {
-            List<Stock> students = new List<Stock>();
+            List<Stock> stocks = new List<Stock>();
 
             foreach (DataRow dr in dataTable.Rows)
             {
                 Stock stock = new Stock()
                 {
-                    DrinkID = (int)dr["StudentID"],
-                    RegisterID = (int)dr["Voornaam"],
-                    Amount = (int)dr["Achternaam"],
+                    DrinkID = (int)dr["DrankID"],
+                    RegisterID = (int)dr["KassaID"],
+                    Amount = (int)dr["Aantal"],
                     
 
                 };
 
-                students.Add(stock);
+                stocks.Add(stock);
             }
-            return students;
+            return stocks;
         }
 
     }
