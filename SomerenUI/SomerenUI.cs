@@ -13,6 +13,7 @@ namespace SomerenUI
         private SomerenLogic.Room_Service room_Service = new SomerenLogic.Room_Service();
         private SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
         private SomerenLogic.Drink_Service Drink_Service = new SomerenLogic.Drink_Service();
+        private SomerenLogic.Stock_Service stock_Service = new SomerenLogic.Stock_Service();
 
         public SomerenUI()
         {
@@ -37,6 +38,7 @@ namespace SomerenUI
             pnl_Rooms.Hide();
             pnl_Sales.Hide();
             pnl_Register.Hide();
+            pnl_Stock.Hide();
         }
 
         private void showPanel(string panelName)
@@ -49,7 +51,7 @@ namespace SomerenUI
                 pnl_Dashboard.Show();
                 img_Dashboard.Show();
             }
-            else if(panelName == "Students")
+            else if (panelName == "Students")
             {
                 // show students
                 pnl_Students.Show();
@@ -82,7 +84,7 @@ namespace SomerenUI
 
                 // fill the teachers listview within the teachers panel with a list of teachers
                 List<Teacher> teacherList = teacher_Service.GetTeacher();
-               
+
                 foreach (Teacher t in teacherList)
                 {
                     ListViewItem List = new ListViewItem(t.Id.ToString());
@@ -90,8 +92,9 @@ namespace SomerenUI
                     List.SubItems.Add(t.FirstName);
                     List.SubItems.Add(t.LastName);
                     List.SubItems.Add(t.RoomNumber.ToString());
+                    List.SubItems.Add(t.Lead.ToString());
                     listViewTeachers.Items.Add(List);
-                }         
+                }
             }
             else if (panelName == "Rooms")
             {
@@ -125,9 +128,7 @@ namespace SomerenUI
 
                 // fill the rooms listview within the rooms panel with a list of rooms
                 List<Drink> DrinkList = Drink_Service.GetDrink();
-
-                SomerenLogic.Student_Service student_Service = new SomerenLogic.Student_Service();
-                List<Student> StudentList = student_Service.GetStudents();
+                List<Student> StudentList = studService.GetStudents();
 
                 // clear the listview before filling it again
                 listView_Register.Items.Clear();
@@ -162,6 +163,27 @@ namespace SomerenUI
             {
                 pnl_Sales.Show();
                 updateSales();
+            }
+            else if (panelName == "Stock")
+            {
+                // show Stock
+                pnl_Stock.Show();
+
+                // clear the listview before filling it again
+                listViewStock.Items.Clear();
+
+                // fill the teachers listview within the teachers panel with a list of teachers
+                List<Stock> stockList = stock_Service.GetStock();
+
+                foreach (Stock s in stockList)
+                {
+                    ListViewItem List = new ListViewItem(s.DrinkID.ToString());
+                    List.Tag = s;
+                    List.SubItems.Add(s.RegisterID.ToString());
+                    List.SubItems.Add(s.Amount.ToString());
+                    
+                    listViewStock.Items.Add(List);
+                }
             }
         }
 
@@ -227,6 +249,35 @@ namespace SomerenUI
                 MessageBox.Show("Start date is after end date");
 
                 calendarTerm.SelectionRange.Start = calendarTerm.SelectionRange.End;
+            }
+            else if (panelName == "Stock")
+            {
+                // hide all other panels
+                pnl_Dashboard.Hide();
+                img_Dashboard.Hide();
+                pnl_Students.Hide();
+                pnl_Rooms.Hide();
+                pnl_Teachers.Hide();
+
+                // show Stock
+                pnl_Stock.Show();
+
+                // clear the listview before filling it again
+                listViewStock.Items.Clear();
+
+                // fill the teachers listview within the teachers panel with a list of teachers
+                SomerenLogic.Stock_Service stock_Service = new SomerenLogic.Stock_Service();
+                List<Stock> stockList = stock_Service.GetStock();
+
+                foreach (Stock s in stockList)
+                {
+                    ListViewItem List = new ListViewItem(s.DrinkID.ToString());
+                    List.Tag = s;
+                    List.SubItems.Add(s.RegisterID.ToString());
+                    List.SubItems.Add(s.Amount.ToString());
+                    
+                    listViewStock.Items.Add(List);
+                }
             }
         }
 
@@ -313,6 +364,11 @@ namespace SomerenUI
 
         }
 
+        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Stock");
+        }
+        
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Sales");
