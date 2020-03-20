@@ -57,10 +57,10 @@ namespace SomerenUI
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lbl_Teachers = new System.Windows.Forms.Label();
             this.listViewTeachers = new System.Windows.Forms.ListView();
+            this.TeacherID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeacherFirstName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeacherLastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeacherRoomNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.TeacherID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TeacherLead = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnl_Stock = new System.Windows.Forms.Panel();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
@@ -348,10 +348,10 @@ namespace SomerenUI
             // listViewTeachers
             // 
             this.listViewTeachers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.TeacherID,
             this.TeacherFirstName,
             this.TeacherLastName,
             this.TeacherRoomNumber,
-            this.TeacherID,
             this.TeacherLead});
             this.listViewTeachers.HideSelection = false;
             this.listViewTeachers.Location = new System.Drawing.Point(16, 42);
@@ -363,28 +363,24 @@ namespace SomerenUI
             this.listViewTeachers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewTeachers_ColumnClick);
             this.listViewTeachers.SelectedIndexChanged += new System.EventHandler(this.listViewTeachers_SelectedIndexChanged);
             // 
+            // TeacherID
+            // 
+            this.TeacherID.Text = "ID";
+            // 
             // TeacherFirstName
             // 
-            this.TeacherFirstName.DisplayIndex = 1;
             this.TeacherFirstName.Text = "First Name";
             this.TeacherFirstName.Width = 117;
             // 
             // TeacherLastName
             // 
-            this.TeacherLastName.DisplayIndex = 2;
             this.TeacherLastName.Text = "Last Name";
             this.TeacherLastName.Width = 105;
             // 
             // TeacherRoomNumber
             // 
-            this.TeacherRoomNumber.DisplayIndex = 3;
             this.TeacherRoomNumber.Text = "Room Number";
             this.TeacherRoomNumber.Width = 132;
-            // 
-            // TeacherID
-            // 
-            this.TeacherID.DisplayIndex = 0;
-            this.TeacherID.Text = "ID";
             // 
             // TeacherLead
             // 
