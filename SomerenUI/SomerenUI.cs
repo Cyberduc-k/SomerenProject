@@ -14,6 +14,7 @@ namespace SomerenUI
         private SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
         private SomerenLogic.Drink_Service Drink_Service = new SomerenLogic.Drink_Service();
         private SomerenLogic.Stock_Service stock_Service = new SomerenLogic.Stock_Service();
+        private SomerenLogic.Activity_Service activity_Service = new SomerenLogic.Activity_Service();
 
         public SomerenUI()
         {
@@ -40,6 +41,7 @@ namespace SomerenUI
             pnl_Sales.Hide();
             pnl_Register.Hide();
             pnl_Stock.Hide();
+            pnl_Activity.Hide();
         }
 
         private void showPanel(string panelName)
@@ -182,7 +184,7 @@ namespace SomerenUI
                     ListViewItem List = new ListViewItem(s.DrinkID.ToString());
                     List.Tag = s;
                     List.SubItems.Add(s.Name);
-                    List.SubItems.Add(s.RegisterID.ToString());
+                    List.SubItems.Add(s.Price.ToString());
                     List.SubItems.Add(s.Amount.ToString());
                     listViewStock.Items.Add(List);
                 }
@@ -192,6 +194,22 @@ namespace SomerenUI
             {
                 pnl_Sales.Show();
                 updateSales();
+            }
+            else if (panelName == "Activities")
+            {
+                pnl_Activity.Show();
+                listViewActivities.Items.Clear();
+
+                List<Activity> activitiesList = activity_Service.GetActivities();
+                foreach (Activity a in activitiesList)
+                {
+                    ListViewItem List = new ListViewItem(a.ID.ToString());
+                    List.Tag = a;
+                    List.SubItems.Add(a.Name);
+                    List.SubItems.Add(a.Date);
+                    List.SubItems.Add(a.Time.ToString());
+
+                }
             }
         }
 
@@ -448,6 +466,11 @@ namespace SomerenUI
 
         private void listView_Register_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Activities");
         }
     }
 }
