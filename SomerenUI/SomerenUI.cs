@@ -104,9 +104,6 @@ namespace SomerenUI
             {
                 // show rooms
                 pnl_Rooms.Show();
-                pnl_Rooms.Show();
-              
-
  
                 // fill the rooms listview within the rooms panel with a list of rooms
                 List<Room> roomList = room_Service.GetRoom();
@@ -124,6 +121,24 @@ namespace SomerenUI
                     ListViewRooms.Items.Add(li);
                 }
 
+            }
+            else if (panelName == "Activities")
+            {
+                pnl_Activity.Show();
+                List<Activity> activitiesList = activity_Service.GetActivities();
+                listViewActivities.Items.Clear();
+
+                
+                foreach (Activity a in activitiesList)
+                {
+                    ListViewItem List = new ListViewItem(a.ID.ToString());
+                    List.Tag = a;
+                    List.SubItems.Add(a.Name);
+                    List.SubItems.Add(a.Date);
+                    List.SubItems.Add(a.Time.ToString());
+                    listViewActivities.Items.Add(List);
+
+                }
             }
             else if (panelName == "Register")
             {
@@ -195,22 +210,7 @@ namespace SomerenUI
                 pnl_Sales.Show();
                 updateSales();
             }
-            else if (panelName == "Activities")
-            {
-                pnl_Activity.Show();
-                listViewActivities.Items.Clear();
-
-                List<Activity> activitiesList = activity_Service.GetActivities();
-                foreach (Activity a in activitiesList)
-                {
-                    ListViewItem List = new ListViewItem(a.ID.ToString());
-                    List.Tag = a;
-                    List.SubItems.Add(a.Name);
-                    List.SubItems.Add(a.Date);
-                    List.SubItems.Add(a.Time.ToString());
-
-                }
-            }
+            
         }
 
         private void updateSales()
@@ -386,11 +386,7 @@ namespace SomerenUI
 
         }
 
-        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            showPanel("Stock");
-        }
-
+        
         private void lblRegisterID_Click(object sender, EventArgs e)
         {
 
@@ -420,20 +416,10 @@ namespace SomerenUI
         {
 
         }
-        
-        private void salesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            showPanel("Sales");
-        }
 
         private void calendar_End_DateChanged(object sender, DateRangeEventArgs e)
         {
             updateSales();
-        }
-        
-        private void registerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            showPanel("Register");
         }
 
         private void listView_Register2_SelectedIndexChanged(object sender, EventArgs e)
@@ -471,6 +457,26 @@ namespace SomerenUI
         private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Activities");
+        }
+
+        private void stockToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Stock");
+        }
+
+        private void registerToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Register");
+        }
+
+        private void salesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Sales");
+        }
+
+        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Stock");
         }
     }
 }
