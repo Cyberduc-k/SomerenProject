@@ -124,20 +124,25 @@ namespace SomerenUI
             }
             else if (panelName == "Activities")
             {
+                //show activities panel
                 pnl_Activity.Show();
+
+                // fill the activities listview within the panel with a list of activities
                 List<Activity> activitiesList = activity_Service.GetActivities();
+
+                // clear the listview before filling it again
                 listViewActivities.Items.Clear();
 
                 
                 foreach (Activity a in activitiesList)
                 {
-                    ListViewItem List = new ListViewItem(a.ID.ToString());
+                    ListViewItem List = new ListViewItem(a.ActivityID.ToString());
                     List.Tag = a;
                     List.SubItems.Add(a.Name);
                     List.SubItems.Add(a.Date);
-                    List.SubItems.Add(a.Time.ToString());
-                    listViewActivities.Items.Add(List);
 
+                    listViewActivities.Items.Add(List);
+                    //List view task (right arrow) then View and then details to see the columns
                 }
             }
             else if (panelName == "Register")
@@ -459,11 +464,6 @@ namespace SomerenUI
             showPanel("Activities");
         }
 
-        private void stockToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            showPanel("Stock");
-        }
-
         private void registerToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             showPanel("Register");
@@ -477,6 +477,16 @@ namespace SomerenUI
         private void stockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Stock");
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
