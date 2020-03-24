@@ -118,6 +118,8 @@ namespace SomerenUI
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.NStudent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.NGuide = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
@@ -761,12 +763,14 @@ namespace SomerenUI
             this.listViewActivities.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.ActivityID,
             this.ActivityNames,
-            this.Day});
+            this.Day,
+            this.NStudent,
+            this.NGuide});
             this.listViewActivities.HideSelection = false;
             this.listViewActivities.Location = new System.Drawing.Point(20, 57);
             this.listViewActivities.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listViewActivities.Name = "listViewActivities";
-            this.listViewActivities.Size = new System.Drawing.Size(380, 237);
+            this.listViewActivities.Size = new System.Drawing.Size(536, 246);
             this.listViewActivities.TabIndex = 4;
             this.listViewActivities.UseCompatibleStateImageBehavior = false;
             this.listViewActivities.View = System.Windows.Forms.View.Details;
@@ -775,12 +779,12 @@ namespace SomerenUI
             // ActivityID
             // 
             this.ActivityID.Text = "Activity ID";
-            this.ActivityID.Width = 86;
+            this.ActivityID.Width = 72;
             // 
             // ActivityNames
             // 
             this.ActivityNames.Text = "Activity Names";
-            this.ActivityNames.Width = 122;
+            this.ActivityNames.Width = 110;
             // 
             // Day
             // 
@@ -912,6 +916,16 @@ namespace SomerenUI
             // columnHeader13
             // 
             this.columnHeader13.Text = "Alcoholic";
+            // 
+            // NStudent
+            // 
+            this.NStudent.Text = "N of Students";
+            this.NStudent.Width = 96;
+            // 
+            // NGuide
+            // 
+            this.NGuide.Text = "N of Guides";
+            this.NGuide.Width = 89;
             // 
             // SomerenUI
             // 
@@ -1053,5 +1067,7 @@ namespace SomerenUI
         private System.Windows.Forms.ToolStripMenuItem registerToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem salesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem stockToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader NStudent;
+        private System.Windows.Forms.ColumnHeader NGuide;
     }
 }

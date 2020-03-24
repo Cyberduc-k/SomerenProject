@@ -140,6 +140,9 @@ namespace SomerenUI
                     List.Tag = a;
                     List.SubItems.Add(a.Name);
                     List.SubItems.Add(a.Date);
+                    List.SubItems.Add(a.NStudent.ToString());
+                    List.SubItems.Add(a.NGuide.ToString());
+
 
                     listViewActivities.Items.Add(List);
                     //List view task (right arrow) then View and then details to see the columns

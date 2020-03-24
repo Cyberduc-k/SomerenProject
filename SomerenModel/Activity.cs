@@ -12,6 +12,10 @@ namespace SomerenModel
         public string Name { get; set; }
         public string Date { get; set; }
         public DateTime Time { get; set; }
+        public int NStudent { get; set; }
+        public int NGuide { get; set; }
+       
+
 
     }
 }
