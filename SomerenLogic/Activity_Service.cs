@@ -17,5 +17,10 @@ namespace SomerenLogic
         {
             return activity_db.Db_Get_All_Activities();
         }
+
+        public void Add_Activity(int ActivityID, string Name, string Date)
+        {
+            activity_db.Db_Add_Activity(ActivityID, Name, Date);
+        }
     }
 }

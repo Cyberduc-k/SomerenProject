@@ -220,6 +220,15 @@ namespace SomerenUI
             }
             
         }
+        private void btnAddActivity_Click(object sender, EventArgs e)
+        {
+            int ActivityID = int.Parse(txtbActivityID.Text);
+            string Name = txtbActivityName.Text;
+            string Date = txtbActivityDay.Text;
+            activity_Service.Add_Activity(ActivityID, Name, Date);
+            listViewActivities.Items.Clear();
+            showPanel("Activities");
+        }
 
         private void updateSales()
         {
@@ -306,8 +315,9 @@ namespace SomerenUI
             int Amount = int.Parse(txtBoxAmount.Text);
             int Price = int.Parse(txtBoxPrice.Text);
             string Name = txtBoxName.Text;
+            
             //int RegisterID = '0';
-            stock_Service.Add_To_Stock(DrankID, Name, Price,Amount,false);
+            stock_Service.Add_To_Stock(DrankID, Name, Price,Amount, false);
             listViewStock.Items.Clear();
             showPanel("Stock");
         }

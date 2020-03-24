@@ -20,6 +20,12 @@ namespace SomerenDAL
 
             return ReadActivity(ExecuteSelectQuery(query, sqlParameters));
         }
+        public void Db_Add_Activity(int ActivityID, string Name, string Date)
+        {
+            string AddActivity = $"Insert into [Activiteiten] (ActiviteitID, Activiteitnaam, Dag) Values ( {ActivityID},{Name}, {Date} )";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(AddActivity, sqlParameters);
+        }
 
         private List<Activity> ReadActivity(DataTable dataTable)
         {
@@ -40,5 +46,7 @@ namespace SomerenDAL
             }
             return activities;
         }
+
+        
     }
 }
