@@ -1,4 +1,5 @@
 ﻿using SomerenModel;
+using SomerenLogic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,12 +9,13 @@ namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
-        private SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
-        private SomerenLogic.Teacher_Service teacher_Service = new SomerenLogic.Teacher_Service();
-        private SomerenLogic.Room_Service room_Service = new SomerenLogic.Room_Service();
-        private SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
-        private SomerenLogic.Drink_Service Drink_Service = new SomerenLogic.Drink_Service();
-        private SomerenLogic.Stock_Service stock_Service = new SomerenLogic.Stock_Service();
+        private Student_Service studService = new Student_Service();
+        private Teacher_Service teacher_Service = new Teacher_Service();
+        private Room_Service room_Service = new Room_Service();
+        private Order_Service orderService = new Order_Service();
+        private Drink_Service Drink_Service = new Drink_Service();
+        private Stock_Service stock_Service = new Stock_Service();
+        private Attendant_Service attendant_service = new Attendant_Service();
 
         public SomerenUI()
         {
@@ -482,6 +484,24 @@ namespace SomerenUI
 
         private void attendantsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            showPanel("Attendants");
+        }
+
+        private void btn_Add_Attendant_Click(object sender, EventArgs e)
+        {
+            ListViewItem li = lv_NonAttendants.SelectedItems[0];
+            Teacher teacher = (Teacher)li.Tag;
+
+            attendant_service.AddAttendant(teacher);
+            showPanel("Attendants");
+        }
+
+        private void btn_Remove_Attendant_Click(object sender, EventArgs e)
+        {
+            ListViewItem li = lv_Attendants.SelectedItems[0];
+            Teacher teacher = (Teacher)li.Tag;
+
+            attendant_service.RemoveAttendant(teacher);
             showPanel("Attendants");
         }
     }
