@@ -40,6 +40,7 @@ namespace SomerenUI
             pnl_Sales.Hide();
             pnl_Register.Hide();
             pnl_Stock.Hide();
+            pnl_Attendants.Hide();
         }
 
         private void showPanel(string panelName)
@@ -182,16 +183,45 @@ namespace SomerenUI
                     ListViewItem List = new ListViewItem(s.DrinkID.ToString());
                     List.Tag = s;
                     List.SubItems.Add(s.Name);
-                    List.SubItems.Add(s.RegisterID.ToString());
+                    List.SubItems.Add(s.Price.ToString());
                     List.SubItems.Add(s.Amount.ToString());
                     listViewStock.Items.Add(List);
                 }
 
             }
-            else if (panelName == "Sales")
+            else if (panelName == "Attendants")
             {
-                pnl_Sales.Show();
-                updateSales();
+                // show attendants
+                pnl_Attendants.Show();
+
+                // clear the items of the two list views
+                lv_Attendants.Items.Clear();
+                lv_NonAttendants.Items.Clear();
+
+                List<Teacher> attending = teacher_Service.GetAttending();
+                List<Teacher> non_attending = teacher_Service.GetNonAttending();
+
+                foreach (Teacher t in attending)
+                {
+                    ListViewItem li = new ListViewItem(t.Id.ToString());
+
+                    li.Tag = t;
+                    li.SubItems.Add(t.FirstName);
+                    li.SubItems.Add(t.LastName);
+                    li.SubItems.Add(t.RoomNumber.ToString());
+                    lv_Attendants.Items.Add(li);
+                }
+
+                foreach (Teacher t in non_attending)
+                {
+                    ListViewItem li = new ListViewItem(t.Id.ToString());
+
+                    li.Tag = t;
+                    li.SubItems.Add(t.FirstName);
+                    li.SubItems.Add(t.LastName);
+                    li.SubItems.Add(t.RoomNumber.ToString());
+                    lv_NonAttendants.Items.Add(li);
+                }
             }
         }
 
@@ -448,6 +478,11 @@ namespace SomerenUI
 
         private void listView_Register_SelectedIndexChanged(object sender, EventArgs e)
         {
+        }
+
+        private void attendantsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Attendants");
         }
     }
 }
