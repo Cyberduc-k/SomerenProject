@@ -13,8 +13,8 @@ namespace SomerenDAL
             string query =
                 "SELECT A.ActiviteitID, A.Activiteitnaam, A.Dag, count(DISTINCT N.StudentID) as [NStudent], count (DISTINCT B.DocentID) as [NGuide]\n"+
                 "FROM Activiteiten AS A\n" +
-                "JOIN NeemtDeel AS N ON A.ActiviteitID = N.ActiviteitID\n" +
-                "JOIN Begeleid AS B ON A.ActiviteitID = B.ActiviteitID\n" +
+                "LEFT JOIN NeemtDeel AS N ON A.ActiviteitID = N.ActiviteitID\n" +
+                "LEFT JOIN Begeleid AS B ON A.ActiviteitID = B.ActiviteitID\n" +
                 "GROUP BY A.ActiviteitID, A.Activiteitnaam, A.Dag";
             SqlParameter[] sqlParameters = new SqlParameter[0];
 
@@ -22,10 +22,18 @@ namespace SomerenDAL
         }
         public void Db_Add_Activity(int ActivityID, string Name, string Date)
         {
-            string AddActivity = $"Insert into [Activiteiten] (ActiviteitID, Activiteitnaam, Dag) Values ( {ActivityID},{Name}, {Date} )";
+            string AddActivity = $"Insert into [Activiteiten] (ActiviteitID, Activiteitnaam, Dag) Values ( {ActivityID},'{Name}', '{Date}' )";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             ExecuteEditQuery(AddActivity, sqlParameters);
         }
+
+        public void Db_Delete_Activity(int ActivityID)
+        {
+            string DeleteActivity = $"DELETE FROM [Activiteiten] (ActiviteitID) WHERE ActivityID = {ActivityID}";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(DeleteActivity, sqlParameters);
+        }
+
 
         private List<Activity> ReadActivity(DataTable dataTable)
         {
