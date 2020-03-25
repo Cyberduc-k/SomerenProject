@@ -22,7 +22,7 @@ namespace SomerenDAL
         }
         public void Db_Add_Activity(int ActivityID, string Name, string Date)
         {
-            string AddActivity = $"Insert into [Activiteiten] (ActiviteitID, Activiteitnaam, Dag) Values ( {ActivityID},'{Name}', '{Date}' )";
+            string AddActivity = $"Insert into [Activiteiten] (ActiviteitID, Activiteitnaam, Dag) Values ( {ActivityID},'{Name}','{Date}')";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             ExecuteEditQuery(AddActivity, sqlParameters);
         }
@@ -33,6 +33,14 @@ namespace SomerenDAL
             SqlParameter[] sqlParameters = new SqlParameter[0];
             ExecuteEditQuery(DeleteActivity, sqlParameters);
         }
+
+        public void Db_Change_Activity(int ActivityID, string Name)
+        {
+            string ChangeActivity = $"UPDATE [Activiteiten] SET [Activiteitnaam] = '{Name}' WHERE [ActivityID] = '{ActivityID}'";
+            SqlParameter[] sqlParameters = new SqlParameter[0];
+            ExecuteEditQuery(ChangeActivity, sqlParameters);
+        }
+
 
 
         private List<Activity> ReadActivity(DataTable dataTable)

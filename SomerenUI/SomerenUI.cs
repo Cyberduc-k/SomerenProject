@@ -315,7 +315,8 @@ namespace SomerenUI
             int Amount = int.Parse(txtBoxAmount.Text);
             int Price = int.Parse(txtBoxPrice.Text);
             string Name = txtBoxName.Text;
-            stock_Service.Add_To_Stock(DrankID, Name, Price,Amount, false);
+            bool Alcohol = false;
+            stock_Service.Add_To_Stock(DrankID, Name, Price,Amount,Alcohol);
             listViewStock.Items.Clear();
             showPanel("Stock");
         }
