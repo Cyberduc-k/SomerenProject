@@ -24,7 +24,8 @@ namespace SomerenUI
             listViewStudents.ListViewItemSorter = new StudentsListComparer(0);
             listViewTeachers.ListViewItemSorter = new TeachersListComparer(0);
             ListViewRooms.ListViewItemSorter = new RoomsListComparer(0);
-
+            lv_Attendants.ListViewItemSorter = new TeachersListComparer(0);
+            lv_NonAttendants.ListViewItemSorter = new TeachersListComparer(0);
         }
 
         private void SomerenUI_Load(object sender, EventArgs e)
@@ -306,6 +307,7 @@ namespace SomerenUI
             showPanel("Stock");
 
         }
+
         public void btnAddToStock_Click(object sender, EventArgs e)
         {
             int DrankID = int.Parse(txtBoxDrinkID.Text);
@@ -316,10 +318,6 @@ namespace SomerenUI
             stock_Service.Add_To_Stock(DrankID, Name, Price,Amount,false);
             listViewStock.Items.Clear();
             showPanel("Stock");
-        }
-        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           //
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -340,11 +338,6 @@ namespace SomerenUI
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Students");
-        }
-
-        private void lecturersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void teacherToolStripMenuItem_Click(object sender, EventArgs e)
@@ -395,44 +388,9 @@ namespace SomerenUI
             ListViewRooms.Sort();
         }
 
-        private void listViewTeachers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void stockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Stock");
-        }
-
-        private void lblRegisterID_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblDrinkID_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxAmount_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxRegisterID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxDrinkID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblAmount_Click(object sender, EventArgs e)
-        {
-
         }
         
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -449,16 +407,9 @@ namespace SomerenUI
         {
             showPanel("Register");
         }
-
-        private void listView_Register2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        
-        }
         
         private void btn_Bestelling_Click(object sender, EventArgs e)
         {
-
-
             ListViewItem item = listView_Register.SelectedItems[0];
             Drink Drink = (Drink)item.Tag;
 
@@ -478,10 +429,6 @@ namespace SomerenUI
             txtbox_Aantal.Text = "1";
         }
 
-        private void listView_Register_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
         private void attendantsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Attendants");
@@ -491,18 +438,52 @@ namespace SomerenUI
         {
             ListViewItem li = lv_NonAttendants.SelectedItems[0];
             Teacher teacher = (Teacher)li.Tag;
+            DialogResult result = MessageBox.Show($"Are you sure you want to make {teacher.Name} an attendant?", "", MessageBoxButtons.YesNo);
 
-            attendant_service.AddAttendant(teacher);
-            showPanel("Attendants");
+            if (result == DialogResult.Yes)
+            {
+                attendant_service.AddAttendant(teacher);
+                showPanel("Attendants");
+            }
         }
 
         private void btn_Remove_Attendant_Click(object sender, EventArgs e)
         {
             ListViewItem li = lv_Attendants.SelectedItems[0];
             Teacher teacher = (Teacher)li.Tag;
+            DialogResult result = MessageBox.Show($"Are you sure you want to remove {teacher.Name} as an attendant?", "", MessageBoxButtons.YesNo);
 
-            attendant_service.RemoveAttendant(teacher);
-            showPanel("Attendants");
+            if (result == DialogResult.Yes)
+            {
+                attendant_service.RemoveAttendant(teacher);
+                showPanel("Attendants");
+            }
+        }
+
+        private void lv_Attendants_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            TeachersListComparer sorter = (TeachersListComparer)lv_Attendants.ListViewItemSorter;
+
+            if (sorter.SortOrder == SortOrder.Ascending)
+                sorter.SortOrder = SortOrder.Descending;
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+
+            sorter.Column = e.Column;
+            lv_Attendants.Sort();
+        }
+
+        private void lv_NonAttendants_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            TeachersListComparer sorter = (TeachersListComparer)lv_NonAttendants.ListViewItemSorter;
+
+            if (sorter.SortOrder == SortOrder.Ascending)
+                sorter.SortOrder = SortOrder.Descending;
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+
+            sorter.Column = e.Column;
+            lv_NonAttendants.Sort();
         }
     }
 }

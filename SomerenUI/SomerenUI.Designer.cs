@@ -182,7 +182,6 @@ namespace SomerenUI
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
             this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(80, 20);
             this.dashboardToolStripMenuItem.Text = "Application";
-            this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
             // dashboardToolStripMenuItem1
             // 
@@ -402,7 +401,6 @@ namespace SomerenUI
             this.listViewTeachers.UseCompatibleStateImageBehavior = false;
             this.listViewTeachers.View = System.Windows.Forms.View.Details;
             this.listViewTeachers.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewTeachers_ColumnClick);
-            this.listViewTeachers.SelectedIndexChanged += new System.EventHandler(this.listViewTeachers_SelectedIndexChanged);
             // 
             // TeacherID
             // 
@@ -504,7 +502,6 @@ namespace SomerenUI
             this.lblStock.Size = new System.Drawing.Size(35, 13);
             this.lblStock.TabIndex = 12;
             this.lblStock.Text = "Stock";
-            this.lblStock.Click += new System.EventHandler(this.lblAmount_Click);
             // 
             // lblDrinkID
             // 
@@ -515,7 +512,6 @@ namespace SomerenUI
             this.lblDrinkID.Size = new System.Drawing.Size(43, 13);
             this.lblDrinkID.TabIndex = 10;
             this.lblDrinkID.Text = "DrinkID";
-            this.lblDrinkID.Click += new System.EventHandler(this.lblDrinkID_Click);
             // 
             // txtBoxAmount
             // 
@@ -524,7 +520,6 @@ namespace SomerenUI
             this.txtBoxAmount.Name = "txtBoxAmount";
             this.txtBoxAmount.Size = new System.Drawing.Size(165, 20);
             this.txtBoxAmount.TabIndex = 9;
-            this.txtBoxAmount.TextChanged += new System.EventHandler(this.txtBoxAmount_TextChanged);
             // 
             // txtBoxDrinkID
             // 
@@ -533,7 +528,6 @@ namespace SomerenUI
             this.txtBoxDrinkID.Name = "txtBoxDrinkID";
             this.txtBoxDrinkID.Size = new System.Drawing.Size(165, 20);
             this.txtBoxDrinkID.TabIndex = 7;
-            this.txtBoxDrinkID.TextChanged += new System.EventHandler(this.txtBoxDrinkID_TextChanged);
             // 
             // btnAddToStock
             // 
@@ -813,7 +807,6 @@ namespace SomerenUI
             this.listView_Register2.TabIndex = 6;
             this.listView_Register2.UseCompatibleStateImageBehavior = false;
             this.listView_Register2.View = System.Windows.Forms.View.Details;
-            this.listView_Register2.SelectedIndexChanged += new System.EventHandler(this.listView_Register2_SelectedIndexChanged);
             // 
             // columnHeader2
             // 
@@ -853,7 +846,6 @@ namespace SomerenUI
             this.listView_Register.TabIndex = 5;
             this.listView_Register.UseCompatibleStateImageBehavior = false;
             this.listView_Register.View = System.Windows.Forms.View.Details;
-            this.listView_Register.SelectedIndexChanged += new System.EventHandler(this.listView_Register_SelectedIndexChanged);
             // 
             // columnHeader10
             // 
@@ -920,6 +912,7 @@ namespace SomerenUI
             this.lv_NonAttendants.TabIndex = 5;
             this.lv_NonAttendants.UseCompatibleStateImageBehavior = false;
             this.lv_NonAttendants.View = System.Windows.Forms.View.Details;
+            this.lv_NonAttendants.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(lv_NonAttendants_ColumnClick);
             // 
             // ch_NA_Id
             // 
@@ -954,6 +947,7 @@ namespace SomerenUI
             this.lv_Attendants.TabIndex = 4;
             this.lv_Attendants.UseCompatibleStateImageBehavior = false;
             this.lv_Attendants.View = System.Windows.Forms.View.Details;
+            this.lv_Attendants.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(lv_Attendants_ColumnClick);
             // 
             // ch_A_Id
             // 
