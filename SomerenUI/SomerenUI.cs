@@ -122,32 +122,6 @@ namespace SomerenUI
                 }
 
             }
-            else if (panelName == "Activities")
-            {
-                //show activities panel
-                pnl_Activity.Show();
-
-                // fill the activities listview within the panel with a list of activities
-                List<Activity> activitiesList = activity_Service.GetActivities();
-
-                // clear the listview before filling it again
-                listViewActivities.Items.Clear();
-
-                
-                foreach (Activity a in activitiesList)
-                {
-                    ListViewItem List = new ListViewItem(a.ActivityID.ToString());
-                    List.Tag = a;
-                    List.SubItems.Add(a.Name);
-                    List.SubItems.Add(a.Date);
-                    List.SubItems.Add(a.NStudent.ToString());
-                    List.SubItems.Add(a.NGuide.ToString());
-
-
-                    listViewActivities.Items.Add(List);
-                    //List view task (right arrow) then View and then details to see the columns
-                }
-            }
             else if (panelName == "Register")
             {
                 // show Register
@@ -218,7 +192,33 @@ namespace SomerenUI
                 pnl_Sales.Show();
                 updateSales();
             }
-            
+            else if (panelName == "Activities")
+            {
+                //show activities panel
+                pnl_Activity.Show();
+
+                // fill the activities listview within the panel with a list of activities
+                List<Activity> activitiesList = activity_Service.GetActivities();
+
+                // clear the listview before filling it again
+                listViewActivities.Items.Clear();
+
+
+                foreach (Activity a in activitiesList)
+                {
+                    ListViewItem List = new ListViewItem(a.ActivityID.ToString());
+                    List.Tag = a;
+                    List.SubItems.Add(a.Name);
+                    List.SubItems.Add(a.Date);
+                    List.SubItems.Add(a.NStudent.ToString());
+                    List.SubItems.Add(a.NGuide.ToString());
+
+
+                    listViewActivities.Items.Add(List);
+                    //List view task (right arrow) then View and then details to see the columns
+                }
+            }
+
         }
         private void btnAddActivity_Click(object sender, EventArgs e)
         {
@@ -232,8 +232,9 @@ namespace SomerenUI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+
             int ActivityID = int.Parse(txtbDelete.Text);
-            
+
             if (MessageBox.Show("Are you sure that you want to delete this activity?","Delete Activity",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 activity_Service.Delete_Activity(ActivityID);
