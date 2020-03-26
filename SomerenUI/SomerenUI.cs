@@ -224,8 +224,35 @@ namespace SomerenUI
         {
             int ActivityID = int.Parse(txtbActivityID.Text);
             string Name = txtbActivityName.Text;
-            string Date = txtbActivityDay.Text;
+            string Date = CBDay.GetItemText(CBDay.SelectedItem);
             activity_Service.Add_Activity(ActivityID, Name, Date);
+            listViewActivities.Items.Clear();
+            showPanel("Activities");
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int ActivityID = int.Parse(txtbDelete.Text);
+            
+            if (MessageBox.Show("Are you sure that you want to delete this activity?","Delete Activity",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                activity_Service.Delete_Activity(ActivityID);
+                MessageBox.Show("Activity Deleted", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else
+            {
+                MessageBox.Show("Activity Not Deleted", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+            }
+            listViewActivities.Items.Clear();
+            showPanel("Activities");
+        } 
+        private void btnChangeActivity_Click(object sender, EventArgs e)
+        {
+            int ActivityID = int.Parse(txtbActivityID.Text);
+            string Name = txtbActivityName.Text;
+            string Date = CBDay.GetItemText(CBDay.SelectedItem);
+            activity_Service.Change_Activity(ActivityID, Name, Date);
             listViewActivities.Items.Clear();
             showPanel("Activities");
         }
@@ -500,5 +527,6 @@ namespace SomerenUI
         {
 
         }
+
     }
 }

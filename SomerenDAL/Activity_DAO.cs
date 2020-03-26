@@ -20,6 +20,7 @@ namespace SomerenDAL
 
             return ReadActivity(ExecuteSelectQuery(query, sqlParameters));
         }
+
         public void Db_Add_Activity(int ActivityID, string Name, string Date)
         {
             string AddActivity = $"Insert into [Activiteiten] (ActiviteitID, Activiteitnaam, Dag) Values ( {ActivityID},'{Name}','{Date}')";
@@ -29,14 +30,16 @@ namespace SomerenDAL
 
         public void Db_Delete_Activity(int ActivityID)
         {
-            string DeleteActivity = $"DELETE FROM [Activiteiten] (ActiviteitID) WHERE ActivityID = {ActivityID}";
+            string DeleteActivity = $"DELETE FROM [NeemtDeel] WHERE [ActiviteitID] = {ActivityID}\n" +
+                                    $"DELETE FROM [Begeleid] WHERE [ActiviteitID] = {ActivityID  }\n" +
+                                    $"DELETE FROM [Activiteiten] WHERE [ActiviteitID] = { ActivityID}";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             ExecuteEditQuery(DeleteActivity, sqlParameters);
         }
 
-        public void Db_Change_Activity(int ActivityID, string Name)
+        public void Db_Change_Activity(int ActivityID, string Name, string Date)
         {
-            string ChangeActivity = $"UPDATE [Activiteiten] SET [Activiteitnaam] = '{Name}' WHERE [ActivityID] = '{ActivityID}'";
+            string ChangeActivity = $"UPDATE [Activiteiten] SET [Activiteitnaam] = '{Name}', [Dag] = '{Date}' WHERE [ActiviteitID] = '{ActivityID}'";
             SqlParameter[] sqlParameters = new SqlParameter[0];
             ExecuteEditQuery(ChangeActivity, sqlParameters);
         }

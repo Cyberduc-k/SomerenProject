@@ -28,9 +28,9 @@ namespace SomerenLogic
             activity_db.Db_Delete_Activity(ActivityID);
         }
 
-        public void Change_Activity(int ActivityID, string Name)
+        public void Change_Activity(int ActivityID, string Name, string Date)
         {
-            activity_db.Db_Change_Activity(ActivityID, Name);
+            activity_db.Db_Change_Activity(ActivityID, Name, Date);
         }
     }
 }
