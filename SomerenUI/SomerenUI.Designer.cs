@@ -132,6 +132,13 @@ namespace SomerenUI
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.rosterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnl_Roster = new System.Windows.Forms.Panel();
+            this.listView_Roster = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.lbl_Roster = new System.Windows.Forms.Label();
             this.pnl_Attendants = new System.Windows.Forms.Panel();
             this.btn_Add_Attendant = new System.Windows.Forms.Button();
             this.btn_Remove_Attendant = new System.Windows.Forms.Button();
@@ -165,6 +172,7 @@ namespace SomerenUI
             this.pnl_Sales.SuspendLayout();
             this.pnl_Activity.SuspendLayout();
             this.pnl_Register.SuspendLayout();
+            this.pnl_Roster.SuspendLayout();
             this.pnl_Attendants.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -190,11 +198,12 @@ namespace SomerenUI
             this.studentsToolStripMenuItem,
             this.teacherToolStripMenuItem,
             this.roomsToolStripMenuItem,
-            this.attendantsToolStripMenuItem});
+            this.attendantsToolStripMenuItem,
+            this.rosterToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1140, 30);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(855, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -240,14 +249,14 @@ namespace SomerenUI
             // registerToolStripMenuItem1
             // 
             this.registerToolStripMenuItem1.Name = "registerToolStripMenuItem1";
-            this.registerToolStripMenuItem1.Size = new System.Drawing.Size(146, 26);
+            this.registerToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.registerToolStripMenuItem1.Text = "Register";
             this.registerToolStripMenuItem1.Click += new System.EventHandler(this.registerToolStripMenuItem1_Click);
             // 
             // salesToolStripMenuItem1
             // 
             this.salesToolStripMenuItem1.Name = "salesToolStripMenuItem1";
-            this.salesToolStripMenuItem1.Size = new System.Drawing.Size(146, 26);
+            this.salesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.salesToolStripMenuItem1.Text = "Sales";
             this.salesToolStripMenuItem1.Click += new System.EventHandler(this.salesToolStripMenuItem1_Click);
             // 
@@ -785,6 +794,25 @@ namespace SomerenUI
             // 
             this.pnl_Activity.BackColor = System.Drawing.SystemColors.Control;
             this.pnl_Activity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+/* thijs
+            this.pnl_Activity.Controls.Add(this.CBDay);
+            this.pnl_Activity.Controls.Add(this.btnChangeActivity);
+            this.pnl_Activity.Controls.Add(this.txtbDelete);
+            this.pnl_Activity.Controls.Add(this.label1);
+            this.pnl_Activity.Controls.Add(this.btnDelete);
+            this.pnl_Activity.Controls.Add(this.btnAddActivity);
+            this.pnl_Activity.Controls.Add(this.txtbActivityName);
+            this.pnl_Activity.Controls.Add(this.txtbActivityID);
+            this.pnl_Activity.Controls.Add(this.lblActivityDay);
+            this.pnl_Activity.Controls.Add(this.lblActivityName);
+            this.pnl_Activity.Controls.Add(this.lblActivityID);
+            this.pnl_Activity.Controls.Add(this.listViewActivities);
+            this.pnl_Activity.Controls.Add(this.lbl_Activities);
+            this.pnl_Activity.Location = new System.Drawing.Point(9, 32);
+            this.pnl_Activity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnl_Activity.Name = "pnl_Activity";
+            this.pnl_Activity.Size = new System.Drawing.Size(712, 301);
+// ======= */
             this.pnl_Activity.Controls.Add(this.groupBox2);
             this.pnl_Activity.Controls.Add(this.groupBox1);
             this.pnl_Activity.Controls.Add(this.listViewActivities);
@@ -793,6 +821,7 @@ namespace SomerenUI
             this.pnl_Activity.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pnl_Activity.Name = "pnl_Activity";
             this.pnl_Activity.Size = new System.Drawing.Size(982, 412);
+// dev
             this.pnl_Activity.TabIndex = 11;
             // 
             // CBDay
@@ -1066,6 +1095,67 @@ namespace SomerenUI
             // 
             this.columnHeader13.Text = "Alcoholic";
             // 
+            // rosterToolStripMenuItem
+            // 
+            this.rosterToolStripMenuItem.Name = "rosterToolStripMenuItem";
+            this.rosterToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+            this.rosterToolStripMenuItem.Text = "Roster";
+            this.rosterToolStripMenuItem.Click += new System.EventHandler(this.rosterToolStripMenuItem_Click);
+            // 
+            // pnl_Roster
+            // 
+            this.pnl_Roster.BackColor = System.Drawing.SystemColors.Control;
+            this.pnl_Roster.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_Roster.Controls.Add(this.listView_Roster);
+            this.pnl_Roster.Controls.Add(this.lbl_Roster);
+            this.pnl_Roster.Location = new System.Drawing.Point(9, 32);
+            this.pnl_Roster.Margin = new System.Windows.Forms.Padding(2);
+            this.pnl_Roster.Name = "pnl_Roster";
+            this.pnl_Roster.Size = new System.Drawing.Size(712, 301);
+            this.pnl_Roster.TabIndex = 18;
+            // 
+            // listView_Roster
+            // 
+            this.listView_Roster.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8});
+            this.listView_Roster.HideSelection = false;
+            this.listView_Roster.Location = new System.Drawing.Point(15, 46);
+            this.listView_Roster.Margin = new System.Windows.Forms.Padding(2);
+            this.listView_Roster.Name = "listView_Roster";
+            this.listView_Roster.Size = new System.Drawing.Size(667, 226);
+            this.listView_Roster.TabIndex = 4;
+            this.listView_Roster.UseCompatibleStateImageBehavior = false;
+            this.listView_Roster.View = System.Windows.Forms.View.Details;
+            this.listView_Roster.SelectedIndexChanged += new System.EventHandler(this.listView_Roster_SelectedIndexChanged);
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Activity";
+            this.columnHeader6.Width = 72;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Day";
+            this.columnHeader7.Width = 102;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Time";
+            this.columnHeader8.Width = 61;
+            // 
+            // lbl_Roster
+            // 
+            this.lbl_Roster.AutoSize = true;
+            this.lbl_Roster.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Roster.Location = new System.Drawing.Point(8, 8);
+            this.lbl_Roster.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_Roster.Name = "lbl_Roster";
+            this.lbl_Roster.Size = new System.Drawing.Size(84, 29);
+            this.lbl_Roster.TabIndex = 3;
+            this.lbl_Roster.Text = "Roster";
+            //
             // pnl_Attendants
             // 
             this.pnl_Attendants.BackColor = System.Drawing.SystemColors.Control;
@@ -1279,6 +1369,8 @@ namespace SomerenUI
             this.pnl_Activity.PerformLayout();
             this.pnl_Register.ResumeLayout(false);
             this.pnl_Register.PerformLayout();
+            this.pnl_Roster.ResumeLayout(false);
+            this.pnl_Roster.PerformLayout();
             this.pnl_Attendants.ResumeLayout(false);
             this.pnl_Attendants.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1410,6 +1502,13 @@ namespace SomerenUI
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnChangeActivity;
         private System.Windows.Forms.ComboBox CBDay;
+        private System.Windows.Forms.ToolStripMenuItem rosterToolStripMenuItem;
+        private System.Windows.Forms.Panel pnl_Roster;
+        private System.Windows.Forms.ListView listView_Roster;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.Label lbl_Roster;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
     }

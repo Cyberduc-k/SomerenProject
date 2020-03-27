@@ -46,6 +46,7 @@ namespace SomerenUI
             pnl_Stock.Hide();
             pnl_Attendants.Hide();
             pnl_Activity.Hide();
+            pnl_Roster.Hide();
         }
 
         private void showPanel(string panelName)
@@ -125,6 +126,32 @@ namespace SomerenUI
                     ListViewRooms.Items.Add(li);
                 }
 
+            }
+            else if (panelName == "Activities")
+            {
+                //show activities panel
+                pnl_Activity.Show();
+
+                // fill the activities listview within the panel with a list of activities
+                List<Activity> activitiesList = activity_Service.GetActivities();
+
+                // clear the listview before filling it again
+                listViewActivities.Items.Clear();
+
+                
+                foreach (Activity a in activitiesList)
+                {
+                    ListViewItem List = new ListViewItem(a.ActivityID.ToString());
+                    List.Tag = a;
+                    List.SubItems.Add(a.Name);
+                    List.SubItems.Add(a.Date);
+                    List.SubItems.Add(a.NStudent.ToString());
+                    List.SubItems.Add(a.NGuide.ToString());
+
+
+                    listViewActivities.Items.Add(List);
+                    //List view task (right arrow) then View and then details to see the columns
+                }
             }
             else if (panelName == "Register")
             {
@@ -268,6 +295,50 @@ namespace SomerenUI
 
             int ActivityID = int.Parse(txtbDelete.Text);
 
+            if (MessageBox.Show("Are you sure that you want to delete this activity?","Delete Activity",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                activity_Service.Delete_Activity(ActivityID);
+                MessageBox.Show("Activity Deleted", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else if (panelName == "Roster")
+            {
+                //show Roster panel
+                pnl_Roster.Show();
+
+                // fill the Roster listview within the panel with a list of activities
+                List<Activity> RosterList = activity_Service.GetActivities();
+
+                // clear the listview before filling it again
+                listViewActivities.Items.Clear();
+
+
+                foreach (Activity a in RosterList)
+                {
+                    ListViewItem List = new ListViewItem(a.Name.ToString());
+                    List.SubItems.Add(a.Date);
+                    List.SubItems.Add(a.Time.ToString());
+
+
+                    listView_Roster.Items.Add(List);
+                    //List view task (right arrow) then View and then details to see the columns
+                }
+            }
+
+        }
+        private void btnAddActivity_Click(object sender, EventArgs e)
+        {
+            int ActivityID = int.Parse(txtbActivityID.Text);
+            string Name = txtbActivityName.Text;
+            string Date = CBDay.GetItemText(CBDay.SelectedItem);
+            activity_Service.Add_Activity(ActivityID, Name, Date);
+            listViewActivities.Items.Clear();
+            showPanel("Activities");
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            int ActivityID = int.Parse(txtbDelete.Text);
+            
             if (MessageBox.Show("Are you sure that you want to delete this activity?","Delete Activity",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 activity_Service.Delete_Activity(ActivityID);
@@ -500,6 +571,11 @@ namespace SomerenUI
         {
             updateSales();
         }
+
+        private void listView_Register2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        
+        }
         
         private void registerToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -599,6 +675,21 @@ namespace SomerenUI
             showPanel("Sales");
         }
 
+        private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Activities");
+        }
+
+        private void registerToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Register");
+        }
+
+        private void salesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Sales");
+        }
+
         private void stockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Stock");
@@ -613,6 +704,14 @@ namespace SomerenUI
         {
 
         }
+        private void listView_Roster_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
+
+        private void rosterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Roster");
+        }
     }
 }
