@@ -39,12 +39,12 @@ namespace SomerenDAL
         public void Db_Add_To_Stock(int DrankID, string Name,int Price, int Amount, bool Alcohol)
         {
             //add drinks to stock 
-            string InstertVoorraad = $"Insert into [Drankje] (DrankID, Naam, Prijs, Alcholistisch ) Values ( {DrankID},'{Name}', {Price} {Alcohol})";
+            string InstertDrink= $"Insert into [Drankje] (DrankID, Naam, Prijs, Alcholistisch ) Values ( {DrankID},'{Name}', {Price}, '{Alcohol}' ";
             string InstertStock = $"Insert into [Voorraad] (DrankId, KassaID, Aantal) Values ({DrankID}, 0 ,{Amount})";
             SqlParameter[] sqlParameters = new SqlParameter[0];
-            ExecuteEditQuery(InstertVoorraad, sqlParameters);
+
+            ExecuteEditQuery(InstertDrink, sqlParameters);
             ExecuteEditQuery(InstertStock, sqlParameters);
-            
         }
 
         private List<Stock> ReadStock(DataTable dataTable)
