@@ -45,7 +45,6 @@ namespace SomerenDAL
 
             ExecuteEditQuery(InstertDrink, sqlParameters);
             ExecuteEditQuery(InstertStock, sqlParameters);
-            
         }
 
         private List<Stock> ReadStock(DataTable dataTable)

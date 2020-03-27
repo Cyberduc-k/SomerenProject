@@ -1,4 +1,5 @@
 ﻿using SomerenModel;
+using SomerenLogic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,13 +9,14 @@ namespace SomerenUI
 {
     public partial class SomerenUI : Form
     {
-        private SomerenLogic.Student_Service studService = new SomerenLogic.Student_Service();
-        private SomerenLogic.Teacher_Service teacher_Service = new SomerenLogic.Teacher_Service();
-        private SomerenLogic.Room_Service room_Service = new SomerenLogic.Room_Service();
-        private SomerenLogic.Order_Service orderService = new SomerenLogic.Order_Service();
-        private SomerenLogic.Drink_Service Drink_Service = new SomerenLogic.Drink_Service();
-        private SomerenLogic.Stock_Service stock_Service = new SomerenLogic.Stock_Service();
-        private SomerenLogic.Activity_Service activity_Service = new SomerenLogic.Activity_Service();
+        private Student_Service studService = new Student_Service();
+        private Teacher_Service teacher_Service = new Teacher_Service();
+        private Room_Service room_Service = new Room_Service();
+        private Order_Service orderService = new Order_Service();
+        private Drink_Service Drink_Service = new Drink_Service();
+        private Stock_Service stock_Service = new Stock_Service();
+        private Attendant_Service attendant_service = new Attendant_Service();
+        private Activity_Service activity_Service = new Activity_Service();
 
         public SomerenUI()
         {
@@ -23,7 +25,8 @@ namespace SomerenUI
             listViewStudents.ListViewItemSorter = new StudentsListComparer(0);
             listViewTeachers.ListViewItemSorter = new TeachersListComparer(0);
             ListViewRooms.ListViewItemSorter = new RoomsListComparer(0);
-
+            lv_Attendants.ListViewItemSorter = new TeachersListComparer(0);
+            lv_NonAttendants.ListViewItemSorter = new TeachersListComparer(0);
         }
 
         private void SomerenUI_Load(object sender, EventArgs e)
@@ -41,6 +44,7 @@ namespace SomerenUI
             pnl_Sales.Hide();
             pnl_Register.Hide();
             pnl_Stock.Hide();
+            pnl_Attendants.Hide();
             pnl_Activity.Hide();
             pnl_Roster.Hide();
         }
@@ -214,10 +218,87 @@ namespace SomerenUI
                 }
 
             }
-            else if (panelName == "Sales")
+            else if (panelName == "Attendants")
             {
-                pnl_Sales.Show();
-                updateSales();
+                // show attendants
+                pnl_Attendants.Show();
+
+                // clear the items of the two list views
+                lv_Attendants.Items.Clear();
+                lv_NonAttendants.Items.Clear();
+
+                List<Teacher> attending = teacher_Service.GetAttending();
+                List<Teacher> non_attending = teacher_Service.GetNonAttending();
+
+                foreach (Teacher t in attending)
+                {
+                    ListViewItem li = new ListViewItem(t.Id.ToString());
+
+                    li.Tag = t;
+                    li.SubItems.Add(t.FirstName);
+                    li.SubItems.Add(t.LastName);
+                    li.SubItems.Add(t.RoomNumber.ToString());
+                    lv_Attendants.Items.Add(li);
+                }
+
+                foreach (Teacher t in non_attending)
+                {
+                    ListViewItem li = new ListViewItem(t.Id.ToString());
+
+                    li.Tag = t;
+                    li.SubItems.Add(t.FirstName);
+                    li.SubItems.Add(t.LastName);
+                    li.SubItems.Add(t.RoomNumber.ToString());
+                    lv_NonAttendants.Items.Add(li);
+                }
+            }
+            else if (panelName == "Activities")
+            {
+                //show activities panel
+                pnl_Activity.Show();
+
+                // fill the activities listview within the panel with a list of activities
+                List<Activity> activitiesList = activity_Service.GetActivities();
+
+                // clear the listview before filling it again
+                listViewActivities.Items.Clear();
+
+
+                foreach (Activity a in activitiesList)
+                {
+                    ListViewItem List = new ListViewItem(a.ActivityID.ToString());
+                    List.Tag = a;
+                    List.SubItems.Add(a.Name);
+                    List.SubItems.Add(a.Date);
+                    List.SubItems.Add(a.NStudent.ToString());
+                    List.SubItems.Add(a.NGuide.ToString());
+
+
+                    listViewActivities.Items.Add(List);
+                    //List view task (right arrow) then View and then details to see the columns
+                }
+            }
+
+        }
+        private void btnAddActivity_Click(object sender, EventArgs e)
+        {
+            int ActivityID = int.Parse(txtbActivityID.Text);
+            string Name = txtbActivityName.Text;
+            string Date = CBDay.GetItemText(CBDay.SelectedItem);
+            activity_Service.Add_Activity(ActivityID, Name, Date);
+            listViewActivities.Items.Clear();
+            showPanel("Activities");
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+            int ActivityID = int.Parse(txtbDelete.Text);
+
+            if (MessageBox.Show("Are you sure that you want to delete this activity?","Delete Activity",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                activity_Service.Delete_Activity(ActivityID);
+                MessageBox.Show("Activity Deleted", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else if (panelName == "Roster")
             {
@@ -360,6 +441,7 @@ namespace SomerenUI
             showPanel("Stock");
 
         }
+
         public void btnAddToStock_Click(object sender, EventArgs e)
         {
             int DrankID = int.Parse(txtBoxDrinkID.Text);
@@ -370,10 +452,6 @@ namespace SomerenUI
             stock_Service.Add_To_Stock(DrankID, Name, Price,Amount,Alcohol);
             listViewStock.Items.Clear();
             showPanel("Stock");
-        }
-        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           //
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -394,11 +472,6 @@ namespace SomerenUI
         private void studentsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Students");
-        }
-
-        private void lecturersToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void teacherToolStripMenuItem_Click(object sender, EventArgs e)
@@ -449,11 +522,20 @@ namespace SomerenUI
             ListViewRooms.Sort();
         }
 
+        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Stock");
+        }
+        
+        private void salesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Sales");
+        }
+        
         private void listViewTeachers_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
         
         private void lblRegisterID_Click(object sender, EventArgs e)
         {
@@ -482,7 +564,7 @@ namespace SomerenUI
 
         private void lblAmount_Click(object sender, EventArgs e)
         {
-
+        
         }
 
         private void calendar_End_DateChanged(object sender, DateRangeEventArgs e)
@@ -495,10 +577,13 @@ namespace SomerenUI
         
         }
         
+        private void registerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Register");
+        }
+        
         private void btn_Bestelling_Click(object sender, EventArgs e)
         {
-
-
             ListViewItem item = listView_Register.SelectedItems[0];
             Drink Drink = (Drink)item.Tag;
 
@@ -518,8 +603,76 @@ namespace SomerenUI
             txtbox_Aantal.Text = "1";
         }
 
-        private void listView_Register_SelectedIndexChanged(object sender, EventArgs e)
+        private void attendantsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            showPanel("Attendants");
+        }
+
+        private void btn_Add_Attendant_Click(object sender, EventArgs e)
+        {
+            ListViewItem li = lv_NonAttendants.SelectedItems[0];
+            Teacher teacher = (Teacher)li.Tag;
+            DialogResult result = MessageBox.Show($"Are you sure you want to make {teacher.Name} an attendant?", "", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                attendant_service.AddAttendant(teacher);
+                showPanel("Attendants");
+            }
+        }
+
+        private void btn_Remove_Attendant_Click(object sender, EventArgs e)
+        {
+            ListViewItem li = lv_Attendants.SelectedItems[0];
+            Teacher teacher = (Teacher)li.Tag;
+            DialogResult result = MessageBox.Show($"Are you sure you want to remove {teacher.Name} as an attendant?", "", MessageBoxButtons.YesNo);
+
+            if (result == DialogResult.Yes)
+            {
+                attendant_service.RemoveAttendant(teacher);
+                showPanel("Attendants");
+            }
+        }
+
+        private void lv_Attendants_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            TeachersListComparer sorter = (TeachersListComparer)lv_Attendants.ListViewItemSorter;
+
+            if (sorter.SortOrder == SortOrder.Ascending)
+                sorter.SortOrder = SortOrder.Descending;
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+
+            sorter.Column = e.Column;
+            lv_Attendants.Sort();
+        }
+
+        private void lv_NonAttendants_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            TeachersListComparer sorter = (TeachersListComparer)lv_NonAttendants.ListViewItemSorter;
+
+            if (sorter.SortOrder == SortOrder.Ascending)
+                sorter.SortOrder = SortOrder.Descending;
+            else
+                sorter.SortOrder = SortOrder.Ascending;
+
+            sorter.Column = e.Column;
+            lv_NonAttendants.Sort();
+        }
+
+        private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Activities");
+        }
+
+        private void registerToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Register");
+        }
+
+        private void salesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Sales");
         }
 
         private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -551,7 +704,6 @@ namespace SomerenUI
         {
 
         }
-
         private void listView_Roster_SelectedIndexChanged(object sender, EventArgs e)
         {
 
