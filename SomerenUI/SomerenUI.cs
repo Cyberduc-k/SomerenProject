@@ -16,6 +16,7 @@ namespace SomerenUI
         private Drink_Service Drink_Service = new Drink_Service();
         private Stock_Service stock_Service = new Stock_Service();
         private Attendant_Service attendant_service = new Attendant_Service();
+        private Activity_Service activity_Service = new Activity_Service();
 
         public SomerenUI()
         {
@@ -44,6 +45,7 @@ namespace SomerenUI
             pnl_Register.Hide();
             pnl_Stock.Hide();
             pnl_Attendants.Hide();
+            pnl_Activity.Hide();
         }
 
         private void showPanel(string panelName)
@@ -106,9 +108,6 @@ namespace SomerenUI
             {
                 // show rooms
                 pnl_Rooms.Show();
-                pnl_Rooms.Show();
-              
-
  
                 // fill the rooms listview within the rooms panel with a list of rooms
                 List<Room> roomList = room_Service.GetRoom();
@@ -226,6 +225,70 @@ namespace SomerenUI
                     lv_NonAttendants.Items.Add(li);
                 }
             }
+            else if (panelName == "Activities")
+            {
+                //show activities panel
+                pnl_Activity.Show();
+
+                // fill the activities listview within the panel with a list of activities
+                List<Activity> activitiesList = activity_Service.GetActivities();
+
+                // clear the listview before filling it again
+                listViewActivities.Items.Clear();
+
+
+                foreach (Activity a in activitiesList)
+                {
+                    ListViewItem List = new ListViewItem(a.ActivityID.ToString());
+                    List.Tag = a;
+                    List.SubItems.Add(a.Name);
+                    List.SubItems.Add(a.Date);
+                    List.SubItems.Add(a.NStudent.ToString());
+                    List.SubItems.Add(a.NGuide.ToString());
+
+
+                    listViewActivities.Items.Add(List);
+                    //List view task (right arrow) then View and then details to see the columns
+                }
+            }
+
+        }
+        private void btnAddActivity_Click(object sender, EventArgs e)
+        {
+            int ActivityID = int.Parse(txtbActivityID.Text);
+            string Name = txtbActivityName.Text;
+            string Date = CBDay.GetItemText(CBDay.SelectedItem);
+            activity_Service.Add_Activity(ActivityID, Name, Date);
+            listViewActivities.Items.Clear();
+            showPanel("Activities");
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+            int ActivityID = int.Parse(txtbDelete.Text);
+
+            if (MessageBox.Show("Are you sure that you want to delete this activity?","Delete Activity",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                activity_Service.Delete_Activity(ActivityID);
+                MessageBox.Show("Activity Deleted", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+            }
+            else
+            {
+                MessageBox.Show("Activity Not Deleted", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+            }
+            listViewActivities.Items.Clear();
+            showPanel("Activities");
+        } 
+        private void btnChangeActivity_Click(object sender, EventArgs e)
+        {
+            int ActivityID = int.Parse(txtbActivityID.Text);
+            string Name = txtbActivityName.Text;
+            string Date = CBDay.GetItemText(CBDay.SelectedItem);
+            activity_Service.Change_Activity(ActivityID, Name, Date);
+            listViewActivities.Items.Clear();
+            showPanel("Activities");
         }
 
         private void updateSales()
@@ -314,8 +377,8 @@ namespace SomerenUI
             int Amount = int.Parse(txtBoxAmount.Text);
             int Price = int.Parse(txtBoxPrice.Text);
             string Name = txtBoxName.Text;
-            //int RegisterID = '0';
-            stock_Service.Add_To_Stock(DrankID, Name, Price,Amount,false);
+            bool Alcohol = false;
+            stock_Service.Add_To_Stock(DrankID, Name, Price,Amount,Alcohol);
             listViewStock.Items.Clear();
             showPanel("Stock");
         }
@@ -396,6 +459,41 @@ namespace SomerenUI
         private void salesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             showPanel("Sales");
+        }
+        
+        private void listViewTeachers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        
+        private void lblRegisterID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblDrinkID_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxAmount_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxRegisterID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxDrinkID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblAmount_Click(object sender, EventArgs e)
+        {
+        
         }
 
         private void calendar_End_DateChanged(object sender, DateRangeEventArgs e)
@@ -485,5 +583,36 @@ namespace SomerenUI
             sorter.Column = e.Column;
             lv_NonAttendants.Sort();
         }
+
+        private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Activities");
+        }
+
+        private void registerToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Register");
+        }
+
+        private void salesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            showPanel("Sales");
+        }
+
+        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Stock");
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewActivities_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
