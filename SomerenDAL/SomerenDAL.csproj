@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activity_DAO.cs" />
     <Compile Include="Base.cs" />
     <Compile Include="Drink_DAO.cs" />
     <Compile Include="Order_DAO.cs" />
@@ -56,6 +57,9 @@
       <Project>{90a9ed02-35d3-4d84-80e4-458bc835c722}</Project>
       <Name>SomerenModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
