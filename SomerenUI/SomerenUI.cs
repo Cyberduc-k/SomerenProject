@@ -42,6 +42,7 @@ namespace SomerenUI
             pnl_Register.Hide();
             pnl_Stock.Hide();
             pnl_Activity.Hide();
+            pnl_Roster.Hide();
         }
 
         private void showPanel(string panelName)
@@ -218,7 +219,30 @@ namespace SomerenUI
                 pnl_Sales.Show();
                 updateSales();
             }
-            
+            else if (panelName == "Roster")
+            {
+                //show Roster panel
+                pnl_Roster.Show();
+
+                // fill the Roster listview within the panel with a list of activities
+                List<Activity> RosterList = activity_Service.GetActivities();
+
+                // clear the listview before filling it again
+                listViewActivities.Items.Clear();
+
+
+                foreach (Activity a in RosterList)
+                {
+                    ListViewItem List = new ListViewItem(a.Name.ToString());
+                    List.SubItems.Add(a.Date);
+                    List.SubItems.Add(a.Time.ToString());
+
+
+                    listView_Roster.Items.Add(List);
+                    //List view task (right arrow) then View and then details to see the columns
+                }
+            }
+
         }
         private void btnAddActivity_Click(object sender, EventArgs e)
         {
@@ -528,5 +552,14 @@ namespace SomerenUI
 
         }
 
+        private void listView_Roster_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rosterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            showPanel("Roster");
+        }
     }
 }
