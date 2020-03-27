@@ -278,28 +278,6 @@ namespace SomerenUI
                     //List view task (right arrow) then View and then details to see the columns
                 }
             }
-
-        }
-        private void btnAddActivity_Click(object sender, EventArgs e)
-        {
-            int ActivityID = int.Parse(txtbActivityID.Text);
-            string Name = txtbActivityName.Text;
-            string Date = CBDay.GetItemText(CBDay.SelectedItem);
-            activity_Service.Add_Activity(ActivityID, Name, Date);
-            listViewActivities.Items.Clear();
-            showPanel("Activities");
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-
-            int ActivityID = int.Parse(txtbDelete.Text);
-
-            if (MessageBox.Show("Are you sure that you want to delete this activity?","Delete Activity",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                activity_Service.Delete_Activity(ActivityID);
-                MessageBox.Show("Activity Deleted", "Done", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-            }
             else if (panelName == "Roster")
             {
                 //show Roster panel
@@ -310,7 +288,6 @@ namespace SomerenUI
 
                 // clear the listview before filling it again
                 listViewActivities.Items.Clear();
-
 
                 foreach (Activity a in RosterList)
                 {
@@ -323,8 +300,8 @@ namespace SomerenUI
                     //List view task (right arrow) then View and then details to see the columns
                 }
             }
-
         }
+
         private void btnAddActivity_Click(object sender, EventArgs e)
         {
             int ActivityID = int.Parse(txtbActivityID.Text);
@@ -352,6 +329,7 @@ namespace SomerenUI
             listViewActivities.Items.Clear();
             showPanel("Activities");
         } 
+
         private void btnChangeActivity_Click(object sender, EventArgs e)
         {
             int ActivityID = int.Parse(txtbActivityID.Text);
@@ -531,50 +509,10 @@ namespace SomerenUI
         {
             showPanel("Sales");
         }
-        
-        private void listViewTeachers_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        
-        private void lblRegisterID_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblDrinkID_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxAmount_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxRegisterID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBoxDrinkID_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblAmount_Click(object sender, EventArgs e)
-        {
-        
-        }
 
         private void calendar_End_DateChanged(object sender, DateRangeEventArgs e)
         {
             updateSales();
-        }
-
-        private void listView_Register2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        
         }
         
         private void registerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -673,40 +611,6 @@ namespace SomerenUI
         private void salesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             showPanel("Sales");
-        }
-
-        private void activitiesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            showPanel("Activities");
-        }
-
-        private void registerToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            showPanel("Register");
-        }
-
-        private void salesToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            showPanel("Sales");
-        }
-
-        private void stockToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            showPanel("Stock");
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listViewActivities_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        private void listView_Roster_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void rosterToolStripMenuItem_Click(object sender, EventArgs e)
