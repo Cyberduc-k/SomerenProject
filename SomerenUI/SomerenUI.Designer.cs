@@ -127,6 +127,8 @@ namespace SomerenUI
             this.ch_A_LastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ch_A_RoomNumber = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lbl_Attendants = new System.Windows.Forms.Label();
+            this.lbl_Attending = new System.Windows.Forms.Label();
+            this.lbl_NonAttending = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.img_Dashboard)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.pnl_Dashboard.SuspendLayout();
@@ -867,6 +869,8 @@ namespace SomerenUI
             // 
             this.pnl_Attendants.BackColor = System.Drawing.SystemColors.Control;
             this.pnl_Attendants.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_Attendants.Controls.Add(this.lbl_NonAttending);
+            this.pnl_Attendants.Controls.Add(this.lbl_Attending);
             this.pnl_Attendants.Controls.Add(this.btn_Add_Attendant);
             this.pnl_Attendants.Controls.Add(this.btn_Remove_Attendant);
             this.pnl_Attendants.Controls.Add(this.lv_NonAttendants);
@@ -906,13 +910,13 @@ namespace SomerenUI
             this.ch_NA_LastName,
             this.ch_NA_RoomNumber});
             this.lv_NonAttendants.HideSelection = false;
-            this.lv_NonAttendants.Location = new System.Drawing.Point(355, 47);
+            this.lv_NonAttendants.Location = new System.Drawing.Point(355, 66);
             this.lv_NonAttendants.Name = "lv_NonAttendants";
-            this.lv_NonAttendants.Size = new System.Drawing.Size(332, 178);
+            this.lv_NonAttendants.Size = new System.Drawing.Size(332, 159);
             this.lv_NonAttendants.TabIndex = 5;
             this.lv_NonAttendants.UseCompatibleStateImageBehavior = false;
             this.lv_NonAttendants.View = System.Windows.Forms.View.Details;
-            this.lv_NonAttendants.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(lv_NonAttendants_ColumnClick);
+            this.lv_NonAttendants.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_NonAttendants_ColumnClick);
             // 
             // ch_NA_Id
             // 
@@ -941,13 +945,13 @@ namespace SomerenUI
             this.ch_A_LastName,
             this.ch_A_RoomNumber});
             this.lv_Attendants.HideSelection = false;
-            this.lv_Attendants.Location = new System.Drawing.Point(13, 47);
+            this.lv_Attendants.Location = new System.Drawing.Point(13, 66);
             this.lv_Attendants.Name = "lv_Attendants";
-            this.lv_Attendants.Size = new System.Drawing.Size(332, 178);
+            this.lv_Attendants.Size = new System.Drawing.Size(332, 159);
             this.lv_Attendants.TabIndex = 4;
             this.lv_Attendants.UseCompatibleStateImageBehavior = false;
             this.lv_Attendants.View = System.Windows.Forms.View.Details;
-            this.lv_Attendants.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(lv_Attendants_ColumnClick);
+            this.lv_Attendants.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lv_Attendants_ColumnClick);
             // 
             // ch_A_Id
             // 
@@ -978,6 +982,24 @@ namespace SomerenUI
             this.lbl_Attendants.Size = new System.Drawing.Size(125, 29);
             this.lbl_Attendants.TabIndex = 3;
             this.lbl_Attendants.Text = "Attendants";
+            // 
+            // lbl_Attending
+            // 
+            this.lbl_Attending.AutoSize = true;
+            this.lbl_Attending.Location = new System.Drawing.Point(16, 47);
+            this.lbl_Attending.Name = "lbl_Attending";
+            this.lbl_Attending.Size = new System.Drawing.Size(52, 13);
+            this.lbl_Attending.TabIndex = 8;
+            this.lbl_Attending.Text = "Attending";
+            // 
+            // lbl_NonAttending
+            // 
+            this.lbl_NonAttending.AutoSize = true;
+            this.lbl_NonAttending.Location = new System.Drawing.Point(358, 47);
+            this.lbl_NonAttending.Name = "lbl_NonAttending";
+            this.lbl_NonAttending.Size = new System.Drawing.Size(72, 13);
+            this.lbl_NonAttending.TabIndex = 9;
+            this.lbl_NonAttending.Text = "Not Attending";
             // 
             // SomerenUI
             // 
@@ -1127,5 +1149,7 @@ namespace SomerenUI
         private System.Windows.Forms.ColumnHeader ch_A_FirstName;
         private System.Windows.Forms.ColumnHeader ch_A_LastName;
         private System.Windows.Forms.ColumnHeader ch_A_RoomNumber;
+        private System.Windows.Forms.Label lbl_NonAttending;
+        private System.Windows.Forms.Label lbl_Attending;
     }
 }
