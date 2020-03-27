@@ -73,3 +73,7 @@ CREATE TABLE [dbo].[Bestellingen] (
 	[KassaID]	   INT NOT NULL FOREIGN KEY REFERENCES Kassa(KassaID),
 	[DrankID]	   INT NOT NULL	FOREIGN KEY REFERENCES Drankje(DrankID)
 );
+
+CREATE TABLE [dbo].[Begeleider] (
+	[DocentId] INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES Docenten(DocentId),
+);
